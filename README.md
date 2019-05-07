@@ -46,3 +46,9 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 * 修改app_name
 
 ![](https://github.com/xuexiangjys/Resource/blob/master/img/templateproject/5.png)
+
+## 项目打包
+
+1.修改工程根目录的`gradle.properties`中的`isNeedPackage=true`。
+
+2.添加并配置keystore，在`versions.gradle`中修改`app_release`相关参数。
