@@ -20,6 +20,7 @@ package com.xuexiang.templateproject;
 import android.app.Application;
 import android.content.Context;
 
+import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.XHttpUpdateHttpService;
 import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xaop.util.PermissionUtils;
@@ -85,12 +86,13 @@ public class MyApp extends Application {
                 .setPageConfiguration(new PageConfiguration() {
                     @Override
                     public List<PageInfo> registerPages(Context context) {
-                        //自动注册页面
+                        //自动注册页面,是编译时自动生成的，build一下就出来了
                         return AppPageConfig.getInstance().getPages();
                     }
                 })
                 .debug(BuildConfig.DEBUG ? "PageLog" : null)
                 .enableWatcher(BuildConfig.DEBUG)
+                .setContainActivityClazz(BaseActivity.class)
                 .init(this);
     }
 

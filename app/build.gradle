@@ -68,7 +68,7 @@ dependencies {
     //XAOP切片
     implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:1.0.3'
     //XUpdate版本更新
-    implementation 'com.github.xuexiangjys:XUpdate:1.0.8'
+    implementation 'com.github.xuexiangjys:XUpdate:1.0.9'
     //XHttp2
     implementation 'com.github.xuexiangjys:XHttp2:1.0.2'
     implementation deps.rxjava2
@@ -76,8 +76,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation deps.gson
     //XPage
-    implementation 'com.github.xuexiangjys.XPage:xpage-lib:2.2.5'
-    annotationProcessor 'com.github.xuexiangjys.XPage:xpage-compiler:2.2.5'
+    implementation 'com.github.xuexiangjys.XPage:xpage-lib:2.2.6'
+    annotationProcessor 'com.github.xuexiangjys.XPage:xpage-compiler:2.2.6'
     //ButterKnife的sdk
     implementation deps.butterknife.runtime
     annotationProcessor deps.butterknife.compiler
