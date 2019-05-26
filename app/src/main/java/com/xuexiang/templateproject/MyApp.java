@@ -21,7 +21,7 @@ import android.app.Application;
 import android.content.Context;
 
 import com.xuexiang.templateproject.core.BaseActivity;
-import com.xuexiang.templateproject.core.XHttpUpdateHttpService;
+import com.xuexiang.templateproject.core.XHttpUpdateHttpServiceImpl;
 import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xaop.util.PermissionUtils;
 import com.xuexiang.xhttp2.XHttpSDK;
@@ -153,7 +153,7 @@ public class MyApp extends Application {
                 .param("versionCode", UpdateUtils.getVersionCode(this))
                 .param("appKey", getPackageName())
                 //这个必须设置！实现网络请求功能。
-                .setIUpdateHttpService(new XHttpUpdateHttpService())
+                .setIUpdateHttpService(new XHttpUpdateHttpServiceImpl())
                 //这个必须初始化
                 .init(this);
     }

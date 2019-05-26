@@ -24,7 +24,10 @@
         </activity>
 
         <!--fragment的页面容器-->
-        <activity android:name=".core.BaseActivity" />
+        <activity
+            android:name=".core.BaseActivity"
+            android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
+            android:windowSoftInputMode="adjustPan|stateHidden" />
 
     </application>
 

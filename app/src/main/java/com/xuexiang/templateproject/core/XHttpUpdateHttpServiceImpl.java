@@ -38,15 +38,15 @@ import io.reactivex.disposables.Disposable;
  * @author xuexiang
  * @since 2018/8/12 上午11:46
  */
-public class XHttpUpdateHttpService implements IUpdateHttpService {
+public class XHttpUpdateHttpServiceImpl implements IUpdateHttpService {
 
     private String mBaseUrl;
 
-    public XHttpUpdateHttpService() {
+    public XHttpUpdateHttpServiceImpl() {
         this(XHttp.getBaseUrl());
     }
 
-    public XHttpUpdateHttpService(String baseUrl) {
+    public XHttpUpdateHttpServiceImpl(String baseUrl) {
         mBaseUrl = baseUrl;
     }
 

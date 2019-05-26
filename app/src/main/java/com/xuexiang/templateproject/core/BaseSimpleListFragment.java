@@ -51,8 +51,11 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     public void onConfigurationChanged(Configuration newConfig) {
         //屏幕旋转时刷新一下title
         super.onConfigurationChanged(newConfig);
-        ((ViewGroup) getRootView()).removeViewAt(0);
-        initTitle();
+        ViewGroup root = (ViewGroup) getRootView();
+        if (root.getChildAt(0) instanceof TitleBar) {
+            root.removeViewAt(0);
+            initTitle();
+        }
     }
 
 }
