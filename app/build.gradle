@@ -71,8 +71,8 @@ dependencies {
 
     //XUtil工具类
     implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.5'
-    //XAOP切片
-    implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:1.0.3'
+    //XAOP切片，版本号前带x的是支持androidx的版本
+    implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:x1.0.3'
     //XUpdate版本更新
     implementation 'com.github.xuexiangjys:XUpdate:1.0.9'
     //XHttp2
