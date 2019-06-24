@@ -63,7 +63,7 @@ dependencies {
     androidTestImplementation deps.espresso.core
 
     //XUI框架
-    implementation 'com.github.xuexiangjys:XUI:1.0.5'
+    implementation 'com.github.xuexiangjys:XUI:1.0.6'
     implementation deps.androidx.appcompat
     implementation deps.androidx.recyclerview
     implementation deps.androidx.design
