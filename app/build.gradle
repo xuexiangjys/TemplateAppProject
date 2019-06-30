@@ -12,6 +12,9 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        multiDexEnabled true
+        vectorDrawables.useSupportLibrary = true
     }
 
     if (isNeedPackage.toBoolean()) {
@@ -57,10 +60,11 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation deps.support.app_compat
     testImplementation deps.junit
     androidTestImplementation deps.runner
     androidTestImplementation deps.espresso.core
+
+    implementation deps.androidx.multidex
 
     //XUI框架
     implementation 'com.github.xuexiangjys:XUI:1.0.6'

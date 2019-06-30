@@ -20,6 +20,8 @@ package com.xuexiang.templateproject;
 import android.app.Application;
 import android.content.Context;
 
+import androidx.multidex.MultiDex;
+
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.XHttpUpdateHttpServiceImpl;
 import com.xuexiang.xaop.XAOP;
@@ -43,6 +45,13 @@ import java.util.List;
  * @since 2018/11/7 下午1:12
  */
 public class MyApp extends Application {
+
+    @Override
+    protected void attachBaseContext(Context base) {
+        super.attachBaseContext(base);
+        //解决4.x运行崩溃的问题
+        MultiDex.install(this);
+    }
 
     @Override
     public void onCreate() {
