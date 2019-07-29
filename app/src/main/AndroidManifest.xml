@@ -28,6 +28,9 @@
             android:name=".core.BaseActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:windowSoftInputMode="adjustPan|stateHidden" />
+        <activity
+            android:name=".utils.update.UpdateTipDialog"
+            android:theme="@style/DialogTheme" />
 
     </application>
 

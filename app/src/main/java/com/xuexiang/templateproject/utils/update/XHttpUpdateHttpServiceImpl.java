@@ -15,10 +15,11 @@
  *
  */
 
-package com.xuexiang.templateproject.core;
+package com.xuexiang.templateproject.utils.update;
 
 import androidx.annotation.NonNull;
 
+import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xhttp2.XHttp;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xhttp2.callback.DownloadProgressCallBack;
@@ -26,11 +27,9 @@ import com.xuexiang.xhttp2.callback.SimpleCallBack;
 import com.xuexiang.xhttp2.exception.ApiException;
 import com.xuexiang.xupdate.proxy.IUpdateHttpService;
 import com.xuexiang.xutil.file.FileUtils;
-import com.xuexiang.xutil.tip.ToastUtils;
+import com.xuexiang.xutil.net.JsonUtil;
 
 import java.util.Map;
-
-import io.reactivex.disposables.Disposable;
 
 /**
  * XHttp2实现的请求更新
@@ -40,20 +39,10 @@ import io.reactivex.disposables.Disposable;
  */
 public class XHttpUpdateHttpServiceImpl implements IUpdateHttpService {
 
-    private String mBaseUrl;
-
-    public XHttpUpdateHttpServiceImpl() {
-        this(XHttp.getBaseUrl());
-    }
-
-    public XHttpUpdateHttpServiceImpl(String baseUrl) {
-        mBaseUrl = baseUrl;
-    }
 
     @Override
-    public void asyncGet(@NonNull String url, @NonNull Map<String, Object> params, @NonNull final Callback callBack) {
+    public void asyncGet(@NonNull String url, @NonNull Map<String, Object> params, @NonNull final IUpdateHttpService.Callback callBack) {
         XHttp.get(url)
-                .baseUrl(mBaseUrl)
                 .params(params)
                 .keepJson(true)
                 .execute(new SimpleCallBack<String>() {
@@ -61,7 +50,6 @@ public class XHttpUpdateHttpServiceImpl implements IUpdateHttpService {
                     public void onSuccess(String response) throws Throwable {
                         callBack.onSuccess(response);
                     }
-
                     @Override
                     public void onError(ApiException e) {
                         callBack.onError(e);
@@ -70,10 +58,9 @@ public class XHttpUpdateHttpServiceImpl implements IUpdateHttpService {
     }
 
     @Override
-    public void asyncPost(@NonNull String url, @NonNull Map<String, Object> params, @NonNull final Callback callBack) {
+    public void asyncPost(@NonNull String url, @NonNull Map<String, Object> params, @NonNull final IUpdateHttpService.Callback callBack) {
         XHttp.post(url)
-                .baseUrl(mBaseUrl)
-                .params(params)
+                .upJson(JsonUtil.toJson(params))
                 .keepJson(true)
                 .execute(new SimpleCallBack<String>() {
                     @Override
@@ -89,12 +76,11 @@ public class XHttpUpdateHttpServiceImpl implements IUpdateHttpService {
     }
 
     @Override
-    public void download(@NonNull String url, @NonNull String path, @NonNull String fileName, @NonNull final DownloadCallback callback) {
-        Disposable disposable = XHttp.downLoad(url)
+    public void download(@NonNull String url, @NonNull String path, @NonNull String fileName, @NonNull final IUpdateHttpService.DownloadCallback callback) {
+        XHttpSDK.addRequest(url, XHttp.downLoad(url)
                 .savePath(path)
                 .saveName(fileName)
                 .isUseBaseUrl(false)
-                .baseUrl(mBaseUrl)
                 .execute(new DownloadProgressCallBack<String>() {
                     @Override
                     public void onStart() {
@@ -115,14 +101,12 @@ public class XHttpUpdateHttpServiceImpl implements IUpdateHttpService {
                     public void onComplete(String path) {
                         callback.onSuccess(FileUtils.getFileByPath(path));
                     }
-                });
-
-        XHttpSDK.addRequest(url, disposable);
+                }));
     }
 
     @Override
     public void cancelDownload(@NonNull String url) {
-        ToastUtils.toast("已取消更新！");
+        XToastUtils.info("已取消更新");
         XHttpSDK.cancelRequest(url);
     }
 }
