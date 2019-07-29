@@ -49,7 +49,12 @@ android {
 
                 Properties properties = new Properties()
                 properties.load(project.rootProject.file('local.properties').newDataInputStream())
-                buildConfigField "String", "APP_ID_UMENG", properties.getProperty("APP_ID_UMENG")
+                def appID = properties.getProperty("APP_ID_UMENG")
+                if (appID != null) {
+                    buildConfigField "String", "APP_ID_UMENG", appID
+                } else {
+                    buildConfigField "String", "APP_ID_UMENG", '""'
+                }
             } else {
                 signingConfig signingConfigs.debug
                 buildConfigField "String", "APP_ID_UMENG", '""'

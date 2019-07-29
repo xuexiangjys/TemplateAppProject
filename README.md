@@ -1,5 +1,5 @@
 # TemplateAppProject
-模版空壳Android工程，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate和XHttp2)
+模版空壳Android工程，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate、XHttp2、友盟统计和walle多渠道打包)
 
 ## 集成介绍
 
@@ -39,10 +39,6 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 
 ![](https://github.com/xuexiangjys/Resource/blob/master/img/templateproject/3.png)
 
-* 修改apk打包名
-
-![](https://github.com/xuexiangjys/Resource/blob/master/img/templateproject/4.png)
-
 * 修改app_name
 
 ![](https://github.com/xuexiangjys/Resource/blob/master/img/templateproject/5.png)
@@ -52,3 +48,7 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 1.修改工程根目录的`gradle.properties`中的`isNeedPackage=true`。
 
 2.添加并配置keystore，在`versions.gradle`中修改`app_release`相关参数。
+
+3.如果考虑使用友盟统计的话，在`local.properties`中设置应用的友盟ID:`APP_ID_UMENG`。
+
+4.使用`./gradlew clean assembleReleaseChannels`进行多渠道打包。
