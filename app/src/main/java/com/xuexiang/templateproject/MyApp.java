@@ -22,6 +22,7 @@ import android.content.Context;
 
 import androidx.multidex.MultiDex;
 
+import com.xuexiang.templateproject.utils.sdkinit.UMengInit;
 import com.xuexiang.templateproject.utils.sdkinit.XBasicLibInit;
 import com.xuexiang.templateproject.utils.sdkinit.XUpdateInit;
 
@@ -41,10 +42,8 @@ public class MyApp extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         initLibs();
     }
-
 
     /**
      * 初始化基础库
@@ -53,6 +52,11 @@ public class MyApp extends Application {
         XBasicLibInit.init(this);
 
         XUpdateInit.init(this);
+
+        //运营统计数据运行时不初始化
+        if (!BuildConfig.DEBUG) {
+            UMengInit.init(this);
+        }
     }
 
 

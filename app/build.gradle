@@ -1,5 +1,10 @@
 apply plugin: 'com.android.application'
 apply plugin: 'com.xuexiang.xaop' //引用xaop插件
+apply plugin: 'img-optimizer'
+//打包时，记得设置true启用
+if (isNeedPackage.toBoolean()) {
+    apply plugin: 'com.didiglobal.booster'
+}
 
 android {
     compileSdkVersion build_versions.target_sdk
@@ -17,14 +22,21 @@ android {
         vectorDrawables.useSupportLibrary = true
     }
 
-    if (isNeedPackage.toBoolean()) {
-        signingConfigs {
+    signingConfigs {
+        if (isNeedPackage.toBoolean()) {
             release {
                 storeFile file(app_release.storeFile)
                 storePassword app_release.storePassword
                 keyAlias app_release.keyAlias
                 keyPassword app_release.keyPassword
             }
+        }
+
+        debug {
+            storeFile file("./debug.jks")
+            storePassword "123456"
+            keyAlias "debug"
+            keyPassword "123456"
         }
     }
 
@@ -34,17 +46,22 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
             if (isNeedPackage.toBoolean()) {
                 signingConfig signingConfigs.release
+
+                Properties properties = new Properties()
+                properties.load(project.rootProject.file('local.properties').newDataInputStream())
+                buildConfigField "String", "APP_ID_UMENG", properties.getProperty("APP_ID_UMENG")
+            } else {
+                signingConfig signingConfigs.debug
+                buildConfigField "String", "APP_ID_UMENG", '""'
             }
         }
-    }
 
-    if (isNeedPackage.toBoolean()) {
-        applicationVariants.all { variant ->
-            variant.outputs.all {
-                if (variant.buildType.name.equals('release')) {
-                    outputFileName = "template_${defaultConfig.versionName}.apk"
-                }
-            }
+        debug {
+            debuggable true
+            minifyEnabled false
+
+            signingConfig signingConfigs.debug
+            buildConfigField "String", "APP_ID_UMENG", '""'
         }
     }
 
@@ -95,4 +112,15 @@ dependencies {
     debugImplementation 'com.squareup.leakcanary:leakcanary-android:1.6.3'
     releaseImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
     testImplementation 'com.squareup.leakcanary:leakcanary-android-no-op:1.6.3'
+
+    //umeng统计
+    implementation 'com.umeng.umsdk:analytics:8.0.2'
+    implementation 'com.umeng.umsdk:common:2.0.2'
+
+    //美团多渠道打包
+    implementation 'com.meituan.android.walle:library:1.1.6'
 }
+
+//walle多渠道打包
+apply from: 'multiple-channel.gradle'
+

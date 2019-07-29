@@ -230,3 +230,13 @@
 -keepclassmembers class * {
     @com.xuexiang.xipc.annotation.* <methods>;
 }
+
+# umeng统计
+-keep class com.umeng.** {*;}
+-keepclassmembers class * {
+   public <init> (org.json.JSONObject);
+}
+-keepclassmembers enum * {
+    public static **[] values();
+    public static ** valueOf(java.lang.String);
+}

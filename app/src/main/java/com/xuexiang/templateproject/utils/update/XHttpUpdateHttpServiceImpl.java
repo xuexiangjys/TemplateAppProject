@@ -39,7 +39,6 @@ import java.util.Map;
  */
 public class XHttpUpdateHttpServiceImpl implements IUpdateHttpService {
 
-
     @Override
     public void asyncGet(@NonNull String url, @NonNull Map<String, Object> params, @NonNull final IUpdateHttpService.Callback callBack) {
         XHttp.get(url)

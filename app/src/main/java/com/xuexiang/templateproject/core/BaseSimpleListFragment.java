@@ -21,6 +21,7 @@ import android.content.res.Configuration;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.umeng.analytics.MobclickAgent;
 import com.xuexiang.xpage.base.XPageSimpleListFragment;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.actionbar.TitleUtils;
@@ -58,4 +59,15 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
         }
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(getPageName());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(getPageName());
+    }
 }
