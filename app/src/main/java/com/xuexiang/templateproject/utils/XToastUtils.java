@@ -38,7 +38,9 @@ public final class XToastUtils {
     }
 
     static {
-        XToast.Config.get().allowQueue(false);
+        XToast.Config.get()
+                .setAlpha(200)
+                .allowQueue(false);
     }
 
 

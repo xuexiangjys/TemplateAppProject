@@ -21,8 +21,13 @@ import android.os.Bundle;
 
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.fragment.MainFragment;
-import com.xuexiang.xpage.base.XPageActivity;
 
+/**
+ * 程序主页入口
+ *
+ * @author xuexiang
+ * @since 2019-07-30 9:50
+ */
 public class MainActivity extends BaseActivity {
 
     @Override

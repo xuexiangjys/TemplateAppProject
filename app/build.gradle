@@ -101,6 +101,8 @@ dependencies {
     implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:x1.0.3'
     //XUpdate版本更新
     implementation 'com.github.xuexiangjys:XUpdate:1.0.9'
+    //屏幕适配AutoSize
+    implementation 'me.jessyan:autosize:1.1.2'
     //XHttp2
     implementation 'com.github.xuexiangjys:XHttp2:1.0.2'
     implementation deps.rxjava2

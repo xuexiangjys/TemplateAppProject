@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <color name="colorPrimary">#299EE3</color>
     <color name="colorPrimaryDark">#299EE3</color>
     <color name="colorAccent">#299EE3</color>
+
+
+    <!--Toast，可自定义喜欢的颜色-->
+    <color name="toast_default_text_color" tools:ignore="PrivateResource">@color/xui_config_color_white</color>
+    <color name="toast_error_color" tools:ignore="PrivateResource">@color/xui_config_color_red</color>
+    <color name="toast_info_color" tools:ignore="PrivateResource">@color/colorAccent</color>
+    <color name="toast_success_color" tools:ignore="PrivateResource">#388E3C</color>
+    <color name="toast_warning_color" tools:ignore="PrivateResource">@color/xui_config_color_waring</color>
+    <color name="toast_normal_tint_color" tools:ignore="PrivateResource">#353A3E</color>
+
 </resources>
