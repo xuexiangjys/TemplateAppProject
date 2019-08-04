@@ -20,6 +20,12 @@ android {
 
         multiDexEnabled true
         vectorDrawables.useSupportLibrary = true
+
+        javaCompileOptions {
+            annotationProcessorOptions {
+                arguments = [ moduleName : project.getName() ]
+            }
+        }
     }
 
     signingConfigs {
@@ -112,6 +118,9 @@ dependencies {
     //XPage
     implementation 'com.github.xuexiangjys.XPage:xpage-lib:2.2.6'
     annotationProcessor 'com.github.xuexiangjys.XPage:xpage-compiler:2.2.6'
+    //页面路由
+    implementation 'com.github.xuexiangjys.XRouter:xrouter-runtime:1.0.1'
+    annotationProcessor 'com.github.xuexiangjys.XRouter:xrouter-compiler:1.0.1'
     //ButterKnife的sdk
     implementation deps.butterknife.runtime
     annotationProcessor deps.butterknife.compiler

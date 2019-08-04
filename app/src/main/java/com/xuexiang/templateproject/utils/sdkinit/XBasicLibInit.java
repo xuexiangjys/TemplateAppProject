@@ -26,6 +26,7 @@ import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xpage.AppPageConfig;
 import com.xuexiang.xpage.PageConfig;
+import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
 import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.StringUtils;
@@ -60,6 +61,9 @@ public final class XBasicLibInit {
 
         //UI框架
         initXUI(application);
+
+        //路由框架
+        initRouter(application);
     }
 
     /**
@@ -121,6 +125,18 @@ public final class XBasicLibInit {
     private static void initXUI(Application application) {
         XUI.init(application);
         XUI.debug(BuildConfig.DEBUG);
+    }
+
+    /**
+     * 初始化路由框架
+     */
+    private static void initRouter(Application application) {
+        // 这两行必须写在init之前，否则这些配置在init过程中将无效
+        if (BuildConfig.DEBUG) {
+            XRouter.openLog();     // 打印日志
+            XRouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
+        }
+        XRouter.init(application);
     }
 
 }
