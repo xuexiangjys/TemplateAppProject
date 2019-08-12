@@ -22,7 +22,7 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.xuexiang.templateproject.R;
-import com.xuexiang.xui.adapter.BaseListAdapter;
+import com.xuexiang.xui.adapter.listview.BaseListAdapter;
 import com.xuexiang.xutil.common.StringUtils;
 
 import java.util.List;
