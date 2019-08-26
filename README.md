@@ -57,3 +57,13 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 3.如果考虑使用友盟统计的话，在`local.properties`中设置应用的友盟ID:`APP_ID_UMENG`。
 
 4.使用`./gradlew clean assembleReleaseChannels`进行多渠道打包。
+
+## 如果觉得项目还不错，可以考虑打赏一波
+
+![](https://github.com/xuexiangjys/Resource/blob/master/img/pay/alipay.jpeg) &emsp; ![](https://github.com/xuexiangjys/Resource/blob/master/img/pay/weixinpay.jpeg)
+
+## 联系方式
+
+[![](https://img.shields.io/badge/点击一键加入QQ交流群-602082750-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=9922861ef85c19f1575aecea0e8680f60d9386080a97ed310c971ae074998887)
+
+![](https://github.com/xuexiangjys/Resource/blob/master/img/qq/qq_group.jpg)
