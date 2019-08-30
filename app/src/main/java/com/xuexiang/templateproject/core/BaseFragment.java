@@ -28,6 +28,7 @@ import com.umeng.analytics.MobclickAgent;
 import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.PageOption;
+import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xrouter.facade.service.SerializationService;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.utils.WidgetUtils;
@@ -79,6 +80,30 @@ public abstract class BaseFragment extends XPageFragment {
         return mIMessageLoader;
     }
 
+    @Override
+    public void onConfigurationChanged(Configuration newConfig) {
+        //屏幕旋转时刷新一下title
+        super.onConfigurationChanged(newConfig);
+        ViewGroup root = (ViewGroup) getRootView();
+        if (root.getChildAt(0) instanceof TitleBar) {
+            root.removeViewAt(0);
+            initTitle();
+        }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        MobclickAgent.onPageStart(getPageName());
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        MobclickAgent.onPageEnd(getPageName());
+    }
+
+    //==============================页面跳转api===================================//
     /**
      * 打开一个新的页面
      *
@@ -91,6 +116,21 @@ public abstract class BaseFragment extends XPageFragment {
                 .setNewActivity(true)
                 .open(this);
     }
+
+    /**
+     * 打开一个新的页面
+     *
+     * @param clazzName
+     * @param <T>
+     * @return
+     */
+    public <T extends XPageFragment> Fragment openNewPage(String clazzName) {
+        return new PageOption(clazzName)
+                .setAnim(CoreAnim.slide)
+                .setNewActivity(true)
+                .open(this);
+    }
+
 
     /**
      * 打开一个新的页面
@@ -121,10 +161,16 @@ public abstract class BaseFragment extends XPageFragment {
     public Fragment openPage(PageOption option, String key, Object value) {
         if (value instanceof Integer) {
             option.putInt(key, (Integer) value);
-        } else if (value instanceof String) {
-            option.putString(key, (String) value);
         } else if (value instanceof Float) {
             option.putFloat(key, (Float) value);
+        } else if (value instanceof String) {
+            option.putString(key, (String) value);
+        } else if (value instanceof Boolean) {
+            option.putBoolean(key, (Boolean) value);
+        } else if (value instanceof Long) {
+            option.putLong(key, (Long) value);
+        } else if (value instanceof Double) {
+            option.putDouble(key, (Double) value);
         } else if (value instanceof Parcelable) {
             option.putParcelable(key, (Parcelable) value);
         } else if (value instanceof Serializable) {
@@ -239,27 +285,4 @@ public abstract class BaseFragment extends XPageFragment {
                 .open(this);
     }
 
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        //屏幕旋转时刷新一下title
-        super.onConfigurationChanged(newConfig);
-        ViewGroup root = (ViewGroup) getRootView();
-        if (root.getChildAt(0) instanceof TitleBar) {
-            root.removeViewAt(0);
-            initTitle();
-        }
-    }
-
-    @Override
-    public void onResume() {
-        super.onResume();
-        MobclickAgent.onPageStart(getPageName());
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        MobclickAgent.onPageEnd(getPageName());
-    }
 }
