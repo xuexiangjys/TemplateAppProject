@@ -96,7 +96,7 @@ dependencies {
     implementation deps.androidx.multidex
 
     //XUI框架
-    implementation 'com.github.xuexiangjys:XUI:1.0.8'
+    implementation 'com.github.xuexiangjys:XUI:1.0.9'
     implementation deps.androidx.appcompat
     implementation deps.androidx.recyclerview
     implementation deps.androidx.design
