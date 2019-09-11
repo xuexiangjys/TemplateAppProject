@@ -43,6 +43,7 @@ public final class XToastUtils {
                 .allowQueue(false);
     }
 
+    //======普通土司=======//
 
     @MainThread
     public static void toast(@NonNull CharSequence message) {
@@ -64,7 +65,7 @@ public final class XToastUtils {
         XToast.normal(XUI.getContext(), message, duration).show();
     }
 
-    //=============//
+    //======错误【红色】=======//
 
     @MainThread
     public static void error(@NonNull CharSequence message) {
@@ -86,7 +87,7 @@ public final class XToastUtils {
         XToast.error(XUI.getContext(), message, duration).show();
     }
 
-    //=============//
+    //======成功【绿色】=======//
 
     @MainThread
     public static void success(@NonNull CharSequence message) {
@@ -108,7 +109,7 @@ public final class XToastUtils {
         XToast.success(XUI.getContext(), message, duration).show();
     }
 
-    //=============//
+    //======信息【蓝色】=======//
 
     @MainThread
     public static void info(@NonNull CharSequence message) {
@@ -128,6 +129,28 @@ public final class XToastUtils {
     @MainThread
     public static void info(@StringRes int message, int duration) {
         XToast.info(XUI.getContext(), message, duration).show();
+    }
+
+    //=======警告【黄色】======//
+
+    @MainThread
+    public static void warning(@NonNull CharSequence message) {
+        XToast.warning(XUI.getContext(), message).show();
+    }
+
+    @MainThread
+    public static void warning(@StringRes int message) {
+        XToast.warning(XUI.getContext(), message).show();
+    }
+
+    @MainThread
+    public static void warning(@NonNull CharSequence message, int duration) {
+        XToast.warning(XUI.getContext(), message, duration).show();
+    }
+
+    @MainThread
+    public static void warning(@StringRes int message, int duration) {
+        XToast.warning(XUI.getContext(), message, duration).show();
     }
 
 }
