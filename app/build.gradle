@@ -111,7 +111,7 @@ dependencies {
     //屏幕适配AutoSize
     implementation 'me.jessyan:autosize:1.1.2'
     //XHttp2
-    implementation 'com.github.xuexiangjys:XHttp2:1.0.2'
+    implementation 'com.github.xuexiangjys:XHttp2:1.0.3'
     implementation deps.rxjava2
     implementation deps.rx_android
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
