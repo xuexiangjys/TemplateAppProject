@@ -22,6 +22,15 @@
 
 * [XHttp2 一个功能强悍的网络请求库，使用RxJava2 + Retrofit2 + OKHttp组合进行封装。](https://github.com/xuexiangjys/XHttp2)
 
+除此之外，还集成了其他优秀的第三方库:
+
+* [AndroidAutoSize 优秀的屏幕适配方案](https://github.com/JessYanCoding/AndroidAutoSize)
+
+* [butterknife 控件依赖注入框架](https://github.com/JakeWharton/butterknife)
+
+* [leakcanary 内存泄漏检测](https://github.com/square/leakcanary)
+
+
 ## 使用方式
 
 1.克隆项目
