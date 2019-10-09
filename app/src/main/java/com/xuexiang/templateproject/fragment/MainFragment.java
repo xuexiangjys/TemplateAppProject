@@ -20,17 +20,19 @@ package com.xuexiang.templateproject.fragment;
 import android.view.KeyEvent;
 
 import com.xuexiang.templateproject.core.BaseContainerFragment;
-import com.xuexiang.templateproject.utils.ContinuousClickUtils;
+import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
+import com.xuexiang.xutil.XUtil;
+import com.xuexiang.xutil.common.ClickUtils;
 
 /**
  * @author xuexiang
  * @since 2018/11/7 下午1:16
  */
 @Page(name = "模版程序", anim = CoreAnim.none)
-public class MainFragment extends BaseContainerFragment {
+public class MainFragment extends BaseContainerFragment implements ClickUtils.OnClick2ExitListener {
 
     @Override
     protected Class[] getPagesClasses() {
@@ -42,7 +44,7 @@ public class MainFragment extends BaseContainerFragment {
 
     @Override
     protected TitleBar initTitle() {
-        return super.initTitle().setLeftClickListener(view -> ContinuousClickUtils.exitBy2Click());
+        return super.initTitle().setLeftClickListener(view -> ClickUtils.exitBy2Click(2000, this));
     }
 
 
@@ -52,9 +54,18 @@ public class MainFragment extends BaseContainerFragment {
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
-            ContinuousClickUtils.exitBy2Click();
+            ClickUtils.exitBy2Click(2000, this);
         }
         return true;
     }
 
+    @Override
+    public void onRetry() {
+        XToastUtils.toast("再按一次退出程序");
+    }
+
+    @Override
+    public void onExit() {
+        XUtil.get().exitApp();
+    }
 }
