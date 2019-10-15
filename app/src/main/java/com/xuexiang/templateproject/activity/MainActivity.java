@@ -89,13 +89,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initViews() {
-        mTitles = ResUtils.getStringArray(R.array.home_title);
+        mTitles = ResUtils.getStringArray(R.array.home_titles);
         toolbar.setTitle(mTitles[0]);
 
-        navView.setItemIconTintList(null);
         initHeader();
 
-        //主页
+        //主页内容填充
         FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager());
         for (String title : mTitles) {
             // TODO: 2019-10-09 这里只是演示，实际使用请设置为对应具体的fragment
@@ -106,6 +105,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initHeader() {
+        navView.setItemIconTintList(null);
         View headerView = navView.getHeaderView(0);
         LinearLayout navHeader = headerView.findViewById(R.id.nav_header);
         RadiusImageView ivAvatar = headerView.findViewById(R.id.iv_avatar);
@@ -125,15 +125,37 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
+        //侧边栏点击事件
         navView.setNavigationItemSelectedListener(menuItem -> {
             XToastUtils.toast("点击了:" + menuItem.getTitle());
+            if (menuItem.isCheckable()) {
+                handleNavigationItemSelected(menuItem);
+                drawerLayout.closeDrawers();
+            }
             return true;
         });
 
-        //主页
+        //主页事件监听
         viewPager.addOnPageChangeListener(this);
         bottomNavigation.setOnNavigationItemSelectedListener(this);
     }
+
+    /**
+     * 处理侧边栏点击事件
+     *
+     * @param menuItem
+     * @return
+     */
+    private boolean handleNavigationItemSelected(@NonNull MenuItem menuItem) {
+        int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
+        if (index != -1) {
+            toolbar.setTitle(menuItem.getTitle());
+            viewPager.setCurrentItem(index, false);
+            return true;
+        }
+        return false;
+    }
+
 
     @SingleClick
     @Override
@@ -159,6 +181,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         MenuItem item = bottomNavigation.getMenu().getItem(position);
         toolbar.setTitle(item.getTitle());
         item.setChecked(true);
+
+        updateSideNavStatus(item);
     }
 
     @Override
@@ -168,18 +192,36 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     //================Navigation================//
 
-
+    /**
+     * 底部导航栏点击事件
+     *
+     * @param menuItem
+     * @return
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
         if (index != -1) {
             toolbar.setTitle(menuItem.getTitle());
-            viewPager.setCurrentItem(index, true);
+            viewPager.setCurrentItem(index, false);
+
+            updateSideNavStatus(menuItem);
             return true;
         }
         return false;
     }
 
+    /**
+     * 更新侧边栏菜单选中状态
+     *
+     * @param menuItem
+     */
+    private void updateSideNavStatus(MenuItem menuItem) {
+        MenuItem side = navView.getMenu().findItem(menuItem.getItemId());
+        if (side != null) {
+            side.setChecked(true);
+        }
+    }
 
     /**
      * 菜单、返回键响应
