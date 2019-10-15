@@ -54,11 +54,18 @@ public class MyApp extends Application {
         XUpdateInit.init(this);
 
         //运营统计数据运行时不初始化
-        if (!BuildConfig.DEBUG) {
+        if (!MyApp.isDebug()) {
             UMengInit.init(this);
         }
     }
 
+
+    /**
+     * @return 当前app是否是调试开发模式
+     */
+    public static boolean isDebug() {
+        return BuildConfig.DEBUG;
+    }
 
 
 }

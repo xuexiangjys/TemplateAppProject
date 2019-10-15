@@ -19,7 +19,7 @@ package com.xuexiang.templateproject.utils.sdkinit;
 
 import android.app.Application;
 
-import com.xuexiang.templateproject.BuildConfig;
+import com.xuexiang.templateproject.MyApp;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
@@ -71,7 +71,7 @@ public final class XBasicLibInit {
      */
     private static void initXUtil(Application application) {
         XUtil.init(application);
-        XUtil.debug(BuildConfig.DEBUG);
+        XUtil.debug(MyApp.isDebug());
     }
 
     /**
@@ -81,7 +81,7 @@ public final class XBasicLibInit {
         //初始化网络请求框架，必须首先执行
         XHttpSDK.init(application);
         //需要调试的时候执行
-        if (BuildConfig.DEBUG) {
+        if (MyApp.isDebug()) {
             XHttpSDK.debug();
         }
 //        XHttpSDK.debug(new CustomLoggingInterceptor()); //设置自定义的日志打印拦截器
@@ -103,8 +103,8 @@ public final class XBasicLibInit {
                     //自动注册页面,是编译时自动生成的，build一下就出来了
                     return AppPageConfig.getInstance().getPages();
                 })
-                .debug(BuildConfig.DEBUG ? "PageLog" : null)
-                .enableWatcher(BuildConfig.DEBUG)
+                .debug(MyApp.isDebug() ? "PageLog" : null)
+                .enableWatcher(MyApp.isDebug())
                 .setContainActivityClazz(BaseActivity.class)
                 .init(application);
     }
@@ -114,7 +114,7 @@ public final class XBasicLibInit {
      */
     private static void initXAOP(Application application) {
         XAOP.init(application);
-        XAOP.debug(BuildConfig.DEBUG);
+        XAOP.debug(MyApp.isDebug());
         //设置动态申请权限切片 申请权限被拒绝的事件响应监听
         XAOP.setOnPermissionDeniedListener(permissionsDenied -> XToastUtils.error("权限申请被拒绝:" + StringUtils.listToString(permissionsDenied, ",")));
     }
@@ -124,7 +124,7 @@ public final class XBasicLibInit {
      */
     private static void initXUI(Application application) {
         XUI.init(application);
-        XUI.debug(BuildConfig.DEBUG);
+        XUI.debug(MyApp.isDebug());
     }
 
     /**
@@ -132,7 +132,7 @@ public final class XBasicLibInit {
      */
     private static void initRouter(Application application) {
         // 这两行必须写在init之前，否则这些配置在init过程中将无效
-        if (BuildConfig.DEBUG) {
+        if (MyApp.isDebug()) {
             XRouter.openLog();     // 打印日志
             XRouter.openDebug();   // 开启调试模式(如果在InstantRun模式下运行，必须开启调试模式！线上版本需要关闭,否则有安全风险)
         }
