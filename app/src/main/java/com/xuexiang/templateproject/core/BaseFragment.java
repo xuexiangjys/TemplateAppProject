@@ -176,7 +176,7 @@ public abstract class BaseFragment extends XPageFragment {
         } else if (value instanceof Serializable) {
             option.putSerializable(key, (Serializable) value);
         } else {
-            option.putString(key, XRouter.getInstance().navigation(SerializationService.class).object2Json(value));
+            option.putString(key, serializeObject(value));
         }
         return option.open(this);
     }
@@ -283,6 +283,16 @@ public abstract class BaseFragment extends XPageFragment {
         return new PageOption(clazz)
                 .setRequestCode(requestCode)
                 .open(this);
+    }
+
+    /**
+     * 序列化对象
+     *
+     * @param object
+     * @return
+     */
+    public String serializeObject(Object object) {
+        return XRouter.getInstance().navigation(SerializationService.class).object2Json(object);
     }
 
 }

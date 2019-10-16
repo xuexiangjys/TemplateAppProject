@@ -1,6 +1,6 @@
 # TemplateAppProject
 
-模版空壳Android工程，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate、XHttp2、友盟统计和walle多渠道打包)
+Android空壳模版工程，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate、XHttp2、友盟统计和walle多渠道打包)
 
 ## 关于我
 
@@ -29,6 +29,10 @@
 * [butterknife 控件依赖注入框架](https://github.com/JakeWharton/butterknife)
 
 * [leakcanary 内存泄漏检测](https://github.com/square/leakcanary)
+
+## 更多资源
+
+* [简化版Android空壳模版工程](https://github.com/xuexiangjys/TemplateSimpleProject)
 
 
 ## 使用方式

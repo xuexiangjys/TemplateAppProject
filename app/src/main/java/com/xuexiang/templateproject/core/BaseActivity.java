@@ -23,6 +23,8 @@ import android.os.Bundle;
 import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.CoreSwitchBean;
+import com.xuexiang.xrouter.facade.service.SerializationService;
+import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
 
 import butterknife.ButterKnife;
@@ -84,6 +86,16 @@ public class BaseActivity extends XPageActivity {
      */
     public <T extends XPageFragment> T switchPage(Class<T> clazz) {
         return openPage(clazz, false);
+    }
+
+    /**
+     * 序列化对象
+     *
+     * @param object
+     * @return
+     */
+    public String serializeObject(Object object) {
+        return XRouter.getInstance().navigation(SerializationService.class).object2Json(object);
     }
 
     @Override
