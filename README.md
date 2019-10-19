@@ -33,7 +33,7 @@ Android空壳模版工程，快速搭建（集成了XUI、XUtil、XAOP、XPage�
 ## 更多资源
 
 * [简化版Android空壳模版工程](https://github.com/xuexiangjys/TemplateSimpleProject)
-
+* [X-Library系列详解](https://github.com/xuexiangjys/AndroidAdvancedLearning/blob/master/framework/X-Library%E7%B3%BB%E5%88%97%E8%AF%A6%E8%A7%A3.md)
 
 ## 使用方式
 
