@@ -15,20 +15,20 @@
  *
  */
 
-package com.xuexiang.templateproject.fragment;
+package com.xuexiang.templateproject.fragment.profile;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.xpage.annotation.Page;
+import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 
 /**
- * 这个只是一个空壳Fragment，只是用于演示而已
- *
  * @author xuexiang
- * @since 2019-07-08 00:52
+ * @since 2019-10-30 00:18
  */
-public class EmptyFragment extends BaseFragment {
-
+@Page(anim = CoreAnim.none)
+public class ProfileFragment extends BaseFragment {
     /**
      * @return 返回为 null意为不需要导航栏
      */
@@ -44,7 +44,7 @@ public class EmptyFragment extends BaseFragment {
      */
     @Override
     protected int getLayoutId() {
-        return R.layout.fragment_empty;
+        return R.layout.fragment_profile;
     }
 
     /**

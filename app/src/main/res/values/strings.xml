@@ -5,15 +5,13 @@
     <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="menu_news">动态</string>
-    <string name="menu_trending_repos">趋势</string>
-    <string name="menu_profile">主页</string>
+    <string name="menu_trending">趋势</string>
+    <string name="menu_profile">我的</string>
 
     <string name="menu_notifications">通知</string>
     <string name="menu_issues">问题</string>
-    <string name="menu_my_repos">我的库</string>
-    <string name="menu_starred_repos">星标库</string>
+    <string name="menu_starred">收藏</string>
     <string name="menu_search">搜索</string>
-    <string name="menu_public_news">全球动态</string>
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
 </resources>

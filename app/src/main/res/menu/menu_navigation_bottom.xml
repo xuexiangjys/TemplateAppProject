@@ -27,7 +27,7 @@
     <item
         android:id="@+id/nav_trending"
         android:icon="@drawable/ic_menu_trending"
-        android:title="@string/menu_trending_repos" />
+        android:title="@string/menu_trending" />
 
     <item
         android:id="@+id/nav_profile"

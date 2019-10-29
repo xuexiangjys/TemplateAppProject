@@ -35,7 +35,11 @@ import com.google.android.material.navigation.NavigationView;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
-import com.xuexiang.templateproject.fragment.EmptyFragment;
+import com.xuexiang.templateproject.fragment.AboutFragment;
+import com.xuexiang.templateproject.fragment.SettingsFragment;
+import com.xuexiang.templateproject.fragment.news.NewsFragment;
+import com.xuexiang.templateproject.fragment.profile.ProfileFragment;
+import com.xuexiang.templateproject.fragment.trending.TrendingFragment;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xui.adapter.FragmentAdapter;
@@ -95,11 +99,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         initHeader();
 
         //主页内容填充
-        FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager());
-        for (String title : mTitles) {
-            // TODO: 2019-10-09 这里只是演示，实际使用请设置为对应具体的fragment
-            adapter.addFragment(new EmptyFragment(), title);
-        }
+        BaseFragment[] fragments = new BaseFragment[]{
+                new NewsFragment(),
+                new TrendingFragment(),
+                new ProfileFragment()
+        };
+        FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager(), fragments);
         viewPager.setOffscreenPageLimit(mTitles.length - 1);
         viewPager.setAdapter(adapter);
     }
@@ -127,10 +132,21 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
         //侧边栏点击事件
         navView.setNavigationItemSelectedListener(menuItem -> {
-            XToastUtils.toast("点击了:" + menuItem.getTitle());
             if (menuItem.isCheckable()) {
                 handleNavigationItemSelected(menuItem);
                 drawerLayout.closeDrawers();
+            } else {
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_settings:
+                        openNewPage(SettingsFragment.class);
+                        break;
+                    case R.id.nav_about:
+                        openNewPage(AboutFragment.class);
+                        break;
+                    default:
+                        XToastUtils.toast("点击了:" + menuItem.getTitle());
+                        break;
+                }
             }
             return true;
         });

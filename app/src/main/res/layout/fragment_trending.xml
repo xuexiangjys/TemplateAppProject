@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright (C) 2019 xuexiangjys(xuexiangjys@163.com)
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,14 +15,15 @@
   ~
   -->
 
-<resources>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
-    <string-array name="home_titles">
-        <item>@string/menu_news</item>
-        <item>@string/menu_trending</item>
-        <item>@string/menu_profile</item>
-    </string-array>
+    <TextView
+        style="@style/TextStyle.Title"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:text="@string/menu_trending" />
 
-
-
-</resources>
+</LinearLayout>

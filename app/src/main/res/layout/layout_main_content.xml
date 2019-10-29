@@ -15,7 +15,7 @@
   ~
   -->
 
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
@@ -23,14 +23,14 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppTheme.AppBarOverlay">
+        android:theme="@style/AppTheme.AppBarOverlay"
+        app:elevation="0dp">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|enterAlways"
             app:popupTheme="@style/AppTheme.PopupOverlay"
             app:titleTextColor="@color/xui_config_color_white" />
 
@@ -41,9 +41,9 @@
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:overScrollMode="never"
+        android:layout_marginTop="?actionBarSize"
         android:layout_marginBottom="?actionBarSize"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior" />
+        android:overScrollMode="never" />
 
     <!--  底部导航栏  -->
     <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -53,8 +53,7 @@
         android:layout_gravity="bottom"
         android:background="@color/xui_config_color_white"
         app:labelVisibilityMode="labeled"
-        app:layout_behavior="@string/xui_bottom_behavior"
         app:menu="@menu/menu_navigation_bottom" />
 
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</FrameLayout>
