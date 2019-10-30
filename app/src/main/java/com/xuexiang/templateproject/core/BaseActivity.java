@@ -26,6 +26,7 @@ import com.xuexiang.xpage.core.CoreSwitchBean;
 import com.xuexiang.xrouter.facade.service.SerializationService;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
+import com.xuexiang.xui.widget.slideback.SlideBack;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
@@ -47,11 +48,32 @@ public class BaseActivity extends XPageActivity {
         super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
     }
 
+    /**
+     * 是否支持侧滑返回
+     */
+    public static final String KEY_SUPPORT_SLIDE_BACK = "key_support_slide_back";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         XUI.initTheme(this);
         super.onCreate(savedInstanceState);
         mUnbinder = ButterKnife.bind(this);
+
+        // 侧滑回调
+        if (isSupportSlideBack()) {
+            SlideBack.with(this)
+                    .haveScroll(true)
+                    .callBack(this::popPage)
+                    .register();
+        }
+    }
+
+    /**
+     * @return 是否支持侧滑返回
+     */
+    protected boolean isSupportSlideBack() {
+        CoreSwitchBean page = getIntent().getParcelableExtra(CoreSwitchBean.KEY_SWITCH_BEAN);
+        return page == null || page.getBundle() == null || page.getBundle().getBoolean(KEY_SUPPORT_SLIDE_BACK, true);
     }
 
     /**

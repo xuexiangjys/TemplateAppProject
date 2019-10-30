@@ -37,6 +37,7 @@ import com.xuexiang.xui.widget.actionbar.TitleUtils;
 import com.xuexiang.xui.widget.progress.loading.IMessageLoader;
 
 import java.io.Serializable;
+import java.lang.reflect.Type;
 
 /**
  * 基础fragment
@@ -105,7 +106,7 @@ public abstract class BaseFragment extends XPageFragment {
 
     //==============================页面跳转api===================================//
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
      * @param clazz
      * @param <T>
@@ -118,7 +119,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
      * @param clazzName
      * @param <T>
@@ -133,7 +134,7 @@ public abstract class BaseFragment extends XPageFragment {
 
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
      * @param clazz
      * @param <T>
@@ -147,7 +148,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
      * @param clazz
      * @param <T>
@@ -182,7 +183,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
      * @param clazz
      * @param <T>
@@ -196,7 +197,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
      * @param clazz
      * @param <T>
@@ -207,7 +208,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
      * @param clazz
      * @param <T>
@@ -219,7 +220,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
      * @param clazz
      * @param <T>
@@ -258,7 +259,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     /**
-     * 打开页面,需要结果返回
+     * 打开一个新的页面,需要结果返回
      *
      * @param clazz
      * @param <T>
@@ -294,5 +295,17 @@ public abstract class BaseFragment extends XPageFragment {
     public String serializeObject(Object object) {
         return XRouter.getInstance().navigation(SerializationService.class).object2Json(object);
     }
+
+    /**
+     * 反序列化对象
+     *
+     * @param input
+     * @param clazz
+     * @return
+     */
+    public <T> T deserializeObject(String input, Type clazz) {
+        return XRouter.getInstance().navigation(SerializationService.class).parseObject(input, clazz);
+    }
+
 
 }

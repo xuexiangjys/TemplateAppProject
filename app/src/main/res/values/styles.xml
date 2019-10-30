@@ -12,6 +12,7 @@
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="xui_actionbar_height">?actionBarSize</item>
     </style>
 
     <!--窗体背景，这个背景能在第一时间显示, 避免启动时白屏，黑屏问题-->

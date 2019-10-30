@@ -102,6 +102,9 @@ dependencies {
     implementation deps.androidx.design
     implementation deps.glide
 
+    //下拉刷新
+    implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-header:1.1.5'
+    implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-layout:1.1.5'
     //XUtil工具类
     implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.6'
     //XAOP切片，版本号前带x的是支持androidx的版本

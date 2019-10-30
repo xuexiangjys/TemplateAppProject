@@ -92,6 +92,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         initListeners();
     }
 
+    @Override
+    protected boolean isSupportSlideBack() {
+        return false;
+    }
+
     private void initViews() {
         mTitles = ResUtils.getStringArray(R.array.home_titles);
         toolbar.setTitle(mTitles[0]);
@@ -118,7 +123,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         TextView tvSign = headerView.findViewById(R.id.tv_sign);
 
         // TODO: 2019-10-09 初始化数据
-        ivAvatar.setImageResource(R.mipmap.ic_launcher);
+        ivAvatar.setImageResource(R.drawable.ic_default_head);
         tvAvatar.setText(R.string.app_name);
         tvSign.setText("这个家伙很懒，什么也没有留下～～");
 
