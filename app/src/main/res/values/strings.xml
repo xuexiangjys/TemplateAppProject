@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">TemplateAppProject</string>
+    <string name="app_browser_name">通用浏览器</string>
 
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -14,4 +15,17 @@
     <string name="menu_search">搜索</string>
     <string name="menu_settings">设置</string>
     <string name="menu_about">关于</string>
+
+    <string name="about_copyright">© %1$s xuexiangjys All rights reserved.</string>
+    <string name="about_item_homepage">访问官网</string>
+    <string name="about_item_author_github">关于作者</string>
+    <string name="about_item_add_qq_group">加入QQ交流群</string>
+    <string name="url_project_github">https://github.com/xuexiangjys/TemplateAppProject</string>
+    <string name="url_author_github">https://github.com/xuexiangjys</string>
+    <string name="url_add_qq_group">http://qm.qq.com/cgi-bin/qm/qr?k=tiP-E6rDf0y77PRNfp2lNVcc9RsglPCM</string>
+
+    <string name="lab_yes">是</string>
+    <string name="lab_no">否</string>
+    <string name="lab_open_third_app">是否允许页面打开第三方应用?</string>
+
 </resources>
