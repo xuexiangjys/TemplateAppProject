@@ -36,8 +36,8 @@ import java.util.Map;
  */
 public class SimpleListAdapter extends BaseListAdapter<Map<String, String>, SimpleListAdapter.ViewHolder> {
 
-    public static final String KEY_TITLE = "title";
-    public static final String KEY_SUB_TITLE = "sub_title";
+    public static final String KEY_TITLE = "key_title";
+    public static final String KEY_SUB_TITLE = "key_sub_title";
 
     public SimpleListAdapter(Context context, List<Map<String, String>> data) {
         super(context, data);

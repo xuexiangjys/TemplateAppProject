@@ -25,16 +25,16 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.umeng.analytics.MobclickAgent;
+import com.xuexiang.templateproject.core.http.loader.ProgressLoader;
+import com.xuexiang.xhttp2.subsciber.impl.IProgressLoader;
 import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.PageOption;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xrouter.facade.service.SerializationService;
 import com.xuexiang.xrouter.launcher.XRouter;
-import com.xuexiang.xui.utils.WidgetUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xui.widget.actionbar.TitleUtils;
-import com.xuexiang.xui.widget.progress.loading.IMessageLoader;
 
 import java.io.Serializable;
 import java.lang.reflect.Type;
@@ -47,7 +47,7 @@ import java.lang.reflect.Type;
  */
 public abstract class BaseFragment extends XPageFragment {
 
-    private IMessageLoader mIMessageLoader;
+    private IProgressLoader mIProgressLoader;
 
     @Override
     protected void initPage() {
@@ -65,20 +65,31 @@ public abstract class BaseFragment extends XPageFragment {
 
     }
 
-    public IMessageLoader getMessageLoader() {
-        if (mIMessageLoader == null) {
-            mIMessageLoader = WidgetUtils.getMiniLoadingDialog(getContext());
+    /**
+     * 获取进度条加载者
+     *
+     * @return 进度条加载者
+     */
+    public IProgressLoader getProgressLoader() {
+        if (mIProgressLoader == null) {
+            mIProgressLoader = ProgressLoader.create(getContext());
         }
-        return mIMessageLoader;
+        return mIProgressLoader;
     }
 
-    public IMessageLoader getMessageLoader(String message) {
-        if (mIMessageLoader == null) {
-            mIMessageLoader = WidgetUtils.getMiniLoadingDialog(getContext(), message);
+    /**
+     * 获取进度条加载者
+     *
+     * @param message
+     * @return 进度条加载者
+     */
+    public IProgressLoader getProgressLoader(String message) {
+        if (mIProgressLoader == null) {
+            mIProgressLoader = ProgressLoader.create(getContext(), message);
         } else {
-            mIMessageLoader.updateMessage(message);
+            mIProgressLoader.updateMessage(message);
         }
-        return mIMessageLoader;
+        return mIProgressLoader;
     }
 
     @Override
@@ -105,6 +116,7 @@ public abstract class BaseFragment extends XPageFragment {
     }
 
     //==============================页面跳转api===================================//
+
     /**
      * 打开一个新的页面【建议只在主tab页使用】
      *

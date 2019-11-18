@@ -68,6 +68,11 @@ public final class XToastUtils {
     //======错误【红色】=======//
 
     @MainThread
+    public static void error(@NonNull Throwable throwable) {
+        XToast.error(XUI.getContext(), throwable.getMessage()).show();
+    }
+
+    @MainThread
     public static void error(@NonNull CharSequence message) {
         XToast.error(XUI.getContext(), message).show();
     }
