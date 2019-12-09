@@ -17,8 +17,6 @@
 
 package com.xuexiang.templateproject.fragment.profile;
 
-import android.view.View;
-
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
@@ -31,7 +29,6 @@ import com.xuexiang.xui.widget.imageview.RadiusImageView;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
 
 import butterknife.BindView;
-import butterknife.OnClick;
 
 /**
  * @author xuexiang
@@ -81,7 +78,7 @@ public class ProfileFragment extends BaseFragment implements SuperTextView.OnSup
 
     @SingleClick
     @Override
-    public void onClickListener(SuperTextView view) {
+    public void onClick(SuperTextView view) {
         switch(view.getId()) {
             case R.id.menu_settings:
                 openNewPage(SettingsFragment.class);
