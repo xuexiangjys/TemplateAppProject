@@ -110,6 +110,8 @@ dependencies {
     implementation 'com.github.xuexiangjys.AgentWeb:agentweb-download:1.0.0'//选填
     //XUtil工具类
     implementation 'com.github.xuexiangjys.XUtil:xutil-core:1.1.6'
+    //腾讯的键值对存储mmkv
+    implementation 'com.tencent:mmkv:1.0.22'
     //XAOP切片，版本号前带x的是支持androidx的版本
     implementation 'com.github.xuexiangjys.XAOP:xaop-runtime:1.0.5x'
     //XUpdate版本更新
