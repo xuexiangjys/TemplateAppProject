@@ -130,7 +130,7 @@ public final class MMKVUtils {
      * @param defValue
      * @return
      */
-    public boolean getBoolean(String key, boolean defValue) {
+    public static boolean getBoolean(String key, boolean defValue) {
         checkStatus();
 
         try {
@@ -148,7 +148,7 @@ public final class MMKVUtils {
      * @param defValue
      * @return
      */
-    public long getLong(String key, long defValue) {
+    public static long getLong(String key, long defValue) {
         checkStatus();
 
         try {
@@ -166,7 +166,7 @@ public final class MMKVUtils {
      * @param defValue
      * @return
      */
-    public float getFloat(String key, float defValue) {
+    public static float getFloat(String key, float defValue) {
         checkStatus();
 
         try {
@@ -184,7 +184,7 @@ public final class MMKVUtils {
      * @param defValue
      * @return
      */
-    public String getString(String key, String defValue) {
+    public static String getString(String key, String defValue) {
         checkStatus();
 
         try {
@@ -202,7 +202,7 @@ public final class MMKVUtils {
      * @param defValue
      * @return
      */
-    public int getInt(String key, int defValue) {
+    public static int getInt(String key, int defValue) {
         checkStatus();
 
         try {
@@ -221,7 +221,7 @@ public final class MMKVUtils {
      * @param defValue
      * @return
      */
-    public double getDouble(String key, double defValue) {
+    public static double getDouble(String key, double defValue) {
         checkStatus();
 
         try {
@@ -241,7 +241,7 @@ public final class MMKVUtils {
      * @param <T>
      * @return
      */
-    public <T extends Parcelable> T getObject(String key, Class<T> tClass) {
+    public static <T extends Parcelable> T getObject(String key, Class<T> tClass) {
         checkStatus();
 
         return sMMKV.decodeParcelable(key, tClass);
@@ -255,7 +255,7 @@ public final class MMKVUtils {
      * @param <T>
      * @return
      */
-    public <T extends Parcelable> T getObject(String key, Class<T> tClass, T defValue) {
+    public static <T extends Parcelable> T getObject(String key, Class<T> tClass, T defValue) {
         checkStatus();
 
         try {
