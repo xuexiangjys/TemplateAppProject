@@ -125,8 +125,8 @@ dependencies {
     implementation 'com.squareup.okhttp3:okhttp:3.10.0'
     implementation deps.gson
     //XPage
-    implementation 'com.github.xuexiangjys.XPage:xpage-lib:2.2.8'
-    annotationProcessor 'com.github.xuexiangjys.XPage:xpage-compiler:2.2.8'
+    implementation 'com.github.xuexiangjys.XPage:xpage-lib:2.2.9'
+    annotationProcessor 'com.github.xuexiangjys.XPage:xpage-compiler:2.2.9'
     //页面路由
     implementation 'com.github.xuexiangjys.XRouter:xrouter-runtime:1.0.1'
     annotationProcessor 'com.github.xuexiangjys.XRouter:xrouter-compiler:1.0.1'

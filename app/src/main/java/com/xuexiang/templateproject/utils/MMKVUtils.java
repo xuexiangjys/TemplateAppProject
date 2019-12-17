@@ -49,10 +49,11 @@ public final class MMKVUtils {
         sMMKV = MMKV.defaultMMKV();
     }
 
-    private static void checkStatus() {
+    public static MMKV getsMMKV() {
         if (sMMKV == null) {
             sMMKV = MMKV.defaultMMKV();
         }
+        return sMMKV;
     }
 
     //=======================================键值保存==================================================//
@@ -65,26 +66,24 @@ public final class MMKVUtils {
      * @return
      */
     public static boolean put(String key, Object value) {
-        checkStatus();
-
         if (value instanceof Integer) {
-            return sMMKV.encode(key, (Integer) value);
+            return getsMMKV().encode(key, (Integer) value);
         } else if (value instanceof Float) {
-            return sMMKV.encode(key, (Float) value);
+            return getsMMKV().encode(key, (Float) value);
         } else if (value instanceof String) {
-            return sMMKV.encode(key, (String) value);
+            return getsMMKV().encode(key, (String) value);
         } else if (value instanceof Boolean) {
-            return sMMKV.encode(key, (Boolean) value);
+            return getsMMKV().encode(key, (Boolean) value);
         } else if (value instanceof Long) {
-            return sMMKV.encode(key, (Long) value);
+            return getsMMKV().encode(key, (Long) value);
         } else if (value instanceof Double) {
-            return sMMKV.encode(key, (Double) value);
+            return getsMMKV().encode(key, (Double) value);
         } else if (value instanceof Parcelable) {
-            return sMMKV.encode(key, (Parcelable) value);
+            return getsMMKV().encode(key, (Parcelable) value);
         } else if (value instanceof byte[]) {
-            return sMMKV.encode(key, (byte[]) value);
+            return getsMMKV().encode(key, (byte[]) value);
         } else if (value instanceof Set) {
-            return sMMKV.encode(key, (Set<String>) value);
+            return getsMMKV().encode(key, (Set<String>) value);
         }
         return false;
     }
@@ -100,24 +99,22 @@ public final class MMKVUtils {
      * @return
      */
     public static Object get(String key, Object defaultValue) {
-        checkStatus();
-
         if (defaultValue instanceof Integer) {
-            return sMMKV.decodeInt(key, (Integer) defaultValue);
+            return getsMMKV().decodeInt(key, (Integer) defaultValue);
         } else if (defaultValue instanceof Float) {
-            return sMMKV.decodeFloat(key, (Float) defaultValue);
+            return getsMMKV().decodeFloat(key, (Float) defaultValue);
         } else if (defaultValue instanceof String) {
-            return sMMKV.decodeString(key, (String) defaultValue);
+            return getsMMKV().decodeString(key, (String) defaultValue);
         } else if (defaultValue instanceof Boolean) {
-            return sMMKV.decodeBool(key, (Boolean) defaultValue);
+            return getsMMKV().decodeBool(key, (Boolean) defaultValue);
         } else if (defaultValue instanceof Long) {
-            return sMMKV.decodeLong(key, (Long) defaultValue);
+            return getsMMKV().decodeLong(key, (Long) defaultValue);
         } else if (defaultValue instanceof Double) {
-            return sMMKV.decodeDouble(key, (Double) defaultValue);
+            return getsMMKV().decodeDouble(key, (Double) defaultValue);
         } else if (defaultValue instanceof byte[]) {
-            return sMMKV.decodeBytes(key);
+            return getsMMKV().decodeBytes(key);
         } else if (defaultValue instanceof Set) {
-            return sMMKV.decodeStringSet(key, (Set<String>) defaultValue);
+            return getsMMKV().decodeStringSet(key, (Set<String>) defaultValue);
         }
         return null;
     }
@@ -131,10 +128,8 @@ public final class MMKVUtils {
      * @return
      */
     public static boolean getBoolean(String key, boolean defValue) {
-        checkStatus();
-
         try {
-            return sMMKV.getBoolean(key, defValue);
+            return getsMMKV().getBoolean(key, defValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -149,10 +144,8 @@ public final class MMKVUtils {
      * @return
      */
     public static long getLong(String key, long defValue) {
-        checkStatus();
-
         try {
-            return sMMKV.getLong(key, defValue);
+            return getsMMKV().getLong(key, defValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -167,10 +160,8 @@ public final class MMKVUtils {
      * @return
      */
     public static float getFloat(String key, float defValue) {
-        checkStatus();
-
         try {
-            return sMMKV.getFloat(key, defValue);
+            return getsMMKV().getFloat(key, defValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -185,10 +176,8 @@ public final class MMKVUtils {
      * @return
      */
     public static String getString(String key, String defValue) {
-        checkStatus();
-
         try {
-            return sMMKV.getString(key, defValue);
+            return getsMMKV().getString(key, defValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -203,10 +192,8 @@ public final class MMKVUtils {
      * @return
      */
     public static int getInt(String key, int defValue) {
-        checkStatus();
-
         try {
-            return sMMKV.getInt(key, defValue);
+            return getsMMKV().getInt(key, defValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -222,10 +209,8 @@ public final class MMKVUtils {
      * @return
      */
     public static double getDouble(String key, double defValue) {
-        checkStatus();
-
         try {
-            return sMMKV.decodeDouble(key, defValue);
+            return getsMMKV().decodeDouble(key, defValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -242,9 +227,7 @@ public final class MMKVUtils {
      * @return
      */
     public static <T extends Parcelable> T getObject(String key, Class<T> tClass) {
-        checkStatus();
-
-        return sMMKV.decodeParcelable(key, tClass);
+        return getsMMKV().decodeParcelable(key, tClass);
     }
 
     /**
@@ -256,10 +239,8 @@ public final class MMKVUtils {
      * @return
      */
     public static <T extends Parcelable> T getObject(String key, Class<T> tClass, T defValue) {
-        checkStatus();
-
         try {
-            return sMMKV.decodeParcelable(key, tClass, defValue);
+            return getsMMKV().decodeParcelable(key, tClass, defValue);
         } catch (Exception e) {
             e.printStackTrace();
         }
