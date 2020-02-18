@@ -108,6 +108,10 @@ dependencies {
     implementation 'com.umeng.umsdk:analytics:8.0.2'
     implementation 'com.umeng.umsdk:common:2.0.2'
 
+    //ANR异常捕获
+    implementation 'com.github.anrwatchdog:anrwatchdog:1.4.0'
+
+
     //美团多渠道打包
     implementation 'com.meituan.android.walle:library:1.1.6'
 }

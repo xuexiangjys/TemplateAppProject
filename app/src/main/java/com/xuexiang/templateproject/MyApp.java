@@ -22,6 +22,7 @@ import android.content.Context;
 
 import androidx.multidex.MultiDex;
 
+import com.xuexiang.templateproject.utils.sdkinit.ANRWatchDogInit;
 import com.xuexiang.templateproject.utils.sdkinit.UMengInit;
 import com.xuexiang.templateproject.utils.sdkinit.XBasicLibInit;
 import com.xuexiang.templateproject.utils.sdkinit.XUpdateInit;
@@ -57,6 +58,9 @@ public class MyApp extends Application {
         if (!MyApp.isDebug()) {
             UMengInit.init(this);
         }
+
+        //ANR监控
+        ANRWatchDogInit.init();
     }
 
 

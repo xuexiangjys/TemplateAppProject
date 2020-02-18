@@ -53,7 +53,7 @@
                 <data android:scheme="javascript" />
                 <!--   设置自己的deeplink   -->
                 <data
-                    android:host="xuexiangjys.club"
+                    android:host="xxx.com"
                     android:scheme="xui"/>
             </intent-filter>
             <!-- AppLink -->
@@ -72,10 +72,10 @@
                 <data android:mimeType="application/vnd.wap.xhtml+xml" />
                 <!--   设置自己的applink   -->
                 <data
-                    android:host="xuexiangjys.club"
+                    android:host="xxx.com"
                     android:scheme="http"/>
                 <data
-                    android:host="xuexiangjys.club"
+                    android:host="xxx.com"
                     android:scheme="https"/>
             </intent-filter>
         </activity>

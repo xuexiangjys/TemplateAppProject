@@ -18,9 +18,11 @@
 package com.xuexiang.templateproject.utils.sdkinit;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.xuexiang.templateproject.MyApp;
 import com.xuexiang.templateproject.utils.update.CustomUpdateDownloader;
+import com.xuexiang.templateproject.utils.update.CustomUpdateFailureListener;
 import com.xuexiang.templateproject.utils.update.XHttpUpdateHttpServiceImpl;
 import com.xuexiang.xupdate.XUpdate;
 import com.xuexiang.xupdate.utils.UpdateUtils;
@@ -36,6 +38,11 @@ public final class XUpdateInit {
     private XUpdateInit() {
         throw new UnsupportedOperationException("u can't instantiate me...");
     }
+
+    /**
+     * 应用版本更新的检查地址
+     */
+    private static final String KEY_UPDATE_URL = "";
 
     public static void init(Application application) {
         XUpdate.get()
@@ -54,5 +61,15 @@ public final class XUpdateInit {
                 .setIUpdateDownLoader(new CustomUpdateDownloader())
                 //这个必须初始化
                 .init(application);
+    }
+
+    /**
+     * 进行版本更新检查
+     *
+     * @param context
+     */
+    public static void checkUpdate(Context context, boolean needErrorTip) {
+        XUpdate.newBuild(context).updateUrl(KEY_UPDATE_URL).update();
+        XUpdate.get().setOnUpdateFailureListener(new CustomUpdateFailureListener(needErrorTip));
     }
 }
