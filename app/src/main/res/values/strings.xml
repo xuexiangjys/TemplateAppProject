@@ -19,9 +19,11 @@
     <string name="about_copyright">© %1$s xuexiangjys All rights reserved.</string>
     <string name="about_item_homepage">访问官网</string>
     <string name="about_item_author_github">关于作者</string>
+    <string name="about_item_donation_link">捐赠作者</string>
     <string name="about_item_add_qq_group">QQ交流群</string>
     <string name="url_project_github">https://github.com/xuexiangjys/TemplateAppProject</string>
     <string name="url_author_github">https://github.com/xuexiangjys</string>
+    <string name="url_donation_link">https://gitee.com/xuexiangjys/Resource/blob/master/doc/sponsor.md</string>
     <string name="url_add_qq_group">http://qm.qq.com/cgi-bin/qm/qr?k=tiP-E6rDf0y77PRNfp2lNVcc9RsglPCM</string>
 
     <string name="lab_yes">是</string>

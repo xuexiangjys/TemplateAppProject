@@ -52,9 +52,9 @@
                 <data android:scheme="about" />
                 <data android:scheme="javascript" />
                 <!--   设置自己的deeplink   -->
-                <data
-                    android:host="xxx.com"
-                    android:scheme="xui"/>
+<!--                <data-->
+<!--                    android:host="xxx.com"-->
+<!--                    android:scheme="xui"/>-->
             </intent-filter>
             <!-- AppLink -->
             <intent-filter android:autoVerify="true"
@@ -71,12 +71,12 @@
                 <data android:mimeType="application/xhtml+xml" />
                 <data android:mimeType="application/vnd.wap.xhtml+xml" />
                 <!--   设置自己的applink   -->
-                <data
-                    android:host="xxx.com"
-                    android:scheme="http"/>
-                <data
-                    android:host="xxx.com"
-                    android:scheme="https"/>
+<!--                <data-->
+<!--                    android:host="xxx.com"-->
+<!--                    android:scheme="http"/>-->
+<!--                <data-->
+<!--                    android:host="xxx.com"-->
+<!--                    android:scheme="https"/>-->
             </intent-filter>
         </activity>
 
