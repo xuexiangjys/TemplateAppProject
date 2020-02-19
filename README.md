@@ -77,6 +77,13 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 
 ![](https://github.com/xuexiangjys/Resource/blob/master/img/pay/alipay.jpeg) &emsp; ![](https://github.com/xuexiangjys/Resource/blob/master/img/pay/weixinpay.jpeg)
 
+感谢下面小伙伴的打赏：
+
+姓名 | 金额 | 方式
+:-|:-|:-
+myie9 | 100￥ | 微信
+
+
 ## 联系方式
 
 [![](https://img.shields.io/badge/点击一键加入QQ交流群-602082750-blue.svg)](http://shang.qq.com/wpa/qunwpa?idkey=9922861ef85c19f1575aecea0e8680f60d9386080a97ed310c971ae074998887)
