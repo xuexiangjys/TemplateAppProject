@@ -62,6 +62,7 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
             finish();
         } else {
             Utils.showPrivacyDialog(this, (dialog, which) -> {
+                dialog.dismiss();
                 MMKVUtils.put("key_agree_privacy", true);
                 ActivityUtils.startActivity(MainActivity.class);
                 finish();
