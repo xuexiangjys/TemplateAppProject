@@ -40,6 +40,7 @@ import com.xuexiang.templateproject.fragment.SettingsFragment;
 import com.xuexiang.templateproject.fragment.news.NewsFragment;
 import com.xuexiang.templateproject.fragment.profile.ProfileFragment;
 import com.xuexiang.templateproject.fragment.trending.TrendingFragment;
+import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xui.adapter.FragmentAdapter;
@@ -57,7 +58,7 @@ import butterknife.BindView;
  * @author xuexiang
  * @since 2019-07-07 23:53
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener, BottomNavigationView.OnNavigationItemSelectedListener, ClickUtils.OnClick2ExitListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener, BottomNavigationView.OnNavigationItemSelectedListener, ClickUtils.OnClick2ExitListener, Toolbar.OnMenuItemClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
@@ -100,6 +101,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private void initViews() {
         mTitles = ResUtils.getStringArray(R.array.home_titles);
         toolbar.setTitle(mTitles[0]);
+        toolbar.inflateMenu(R.menu.menu_main);
+        toolbar.setOnMenuItemClickListener(this);
 
         initHeader();
 
@@ -177,6 +180,17 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         return false;
     }
 
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.action_privacy:
+                Utils.showPrivacyDialog(this, null);
+                break;
+            default:
+                break;
+        }
+        return false;
+    }
 
     @SingleClick
     @Override
@@ -264,4 +278,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public void onExit() {
         XUtil.get().exitApp();
     }
+
+
 }

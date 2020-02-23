@@ -18,7 +18,7 @@
             android:name=".activity.SplashActivity"
             android:configChanges="screenSize|keyboardHidden|orientation|keyboard"
             android:screenOrientation="portrait"
-            android:theme="@style/XUITheme.Launch.App"
+            android:theme="@style/AppTheme.Launch.App"
             android:windowSoftInputMode="adjustPan|stateHidden">
 
             <intent-filter>

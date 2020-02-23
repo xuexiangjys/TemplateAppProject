@@ -17,7 +17,6 @@
 
 package com.xuexiang.templateproject.utils.update;
 
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -26,11 +25,9 @@ import android.text.TextUtils;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.xuexiang.templateproject.core.webview.AgentWebActivity;
+import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xupdate.XUpdate;
-
-import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
 
 /**
  * 版本更新提示弹窗
@@ -65,7 +62,7 @@ public class UpdateTipDialog extends AppCompatActivity implements DialogInterfac
 
         DialogLoader.getInstance().showConfirmDialog(this, content, "是", (dialog, which) -> {
             dialog.dismiss();
-//            goWeb(UpdateTipDialog.this, "这里填写你应用下载页面的链接");
+//            Utils.goWeb(UpdateTipDialog.this, "这里填写你应用下载页面的链接");
         }, "否")
                 .setOnDismissListener(this);
 
@@ -74,17 +71,6 @@ public class UpdateTipDialog extends AppCompatActivity implements DialogInterfac
     @Override
     public void onDismiss(DialogInterface dialog) {
         finish();
-    }
-
-    /**
-     * 请求浏览器
-     *
-     * @param url
-     */
-    public static void goWeb(Context context, final String url) {
-        Intent intent = new Intent(context, AgentWebActivity.class);
-        intent.putExtra(KEY_URL, url);
-        context.startActivity(intent);
     }
 
 }
