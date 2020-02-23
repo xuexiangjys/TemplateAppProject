@@ -3,6 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.xuexiang.templateproject">
 
+    <!--进程杀死-->
+    <uses-permission android:name="android.permission.KILL_BACKGROUND_PROCESSES" />
+
     <application
         android:name=".MyApp"
         android:allowBackup="false"
