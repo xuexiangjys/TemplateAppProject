@@ -17,7 +17,6 @@
 
 package com.xuexiang.templateproject.fragment;
 
-import android.view.View;
 import android.widget.TextView;
 
 import com.xuexiang.templateproject.R;
