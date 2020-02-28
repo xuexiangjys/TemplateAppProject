@@ -37,6 +37,8 @@ Android空壳模版工程，快速搭建（集成了XUI、XUtil、XAOP、XPage�
 
 ## 使用方式
 
+[视频教程-如何使用模版工程](https://www.bilibili.com/video/av92348545)
+
 1.克隆项目
 
 ```
