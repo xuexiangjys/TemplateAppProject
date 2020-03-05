@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:windowSoftInputMode="adjustPan|stateHidden">
+        android:windowSoftInputMode="adjustPan|stateHidden"
+        tools:ignore="LockedOrientationActivity">
 
         <activity
             android:name=".activity.SplashActivity"
@@ -46,7 +47,8 @@
             <!-- Scheme -->
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
-                <action android:name="com.xuexiang.xui.applink"/>
+                <action android:name="com.xuexiang.xui.applink" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
 
@@ -55,14 +57,16 @@
                 <data android:scheme="about" />
                 <data android:scheme="javascript" />
                 <!--   设置自己的deeplink   -->
-<!--                <data-->
-<!--                    android:host="xxx.com"-->
-<!--                    android:scheme="xui"/>-->
+                <!--                <data-->
+                <!--                    android:host="xxx.com"-->
+                <!--                    android:scheme="xui"/>-->
             </intent-filter>
             <!-- AppLink -->
-            <intent-filter android:autoVerify="true"
+            <intent-filter
+                android:autoVerify="true"
                 tools:targetApi="m">
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.BROWSABLE" />
                 <category android:name="android.intent.category.DEFAULT" />
 
@@ -74,12 +78,12 @@
                 <data android:mimeType="application/xhtml+xml" />
                 <data android:mimeType="application/vnd.wap.xhtml+xml" />
                 <!--   设置自己的applink   -->
-<!--                <data-->
-<!--                    android:host="xxx.com"-->
-<!--                    android:scheme="http"/>-->
-<!--                <data-->
-<!--                    android:host="xxx.com"-->
-<!--                    android:scheme="https"/>-->
+                <!--                <data-->
+                <!--                    android:host="xxx.com"-->
+                <!--                    android:scheme="http"/>-->
+                <!--                <data-->
+                <!--                    android:host="xxx.com"-->
+                <!--                    android:scheme="https"/>-->
             </intent-filter>
         </activity>
 
