@@ -32,31 +32,35 @@
                 android:paddingTop="20dp">
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                    android:id="@+id/menu_common"
                     style="@style/InfoItem.Account"
                     app:sLeftTextString="通用" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                    android:id="@+id/menu_privacy"
                     style="@style/InfoItem.Account"
                     app:sLeftTextString="隐私" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                    android:id="@+id/menu_push"
                     style="@style/InfoItem.Account"
                     app:sLeftTextString="推送" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                    android:id="@+id/menu_helper"
                     style="@style/InfoItem.Account"
                     app:sDividerLineType="none"
                     app:sLeftTextString="帮助" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    android:id="@+id/menu_settings"
+                    android:id="@+id/menu_change_account"
                     style="@style/InfoItem"
                     android:layout_marginTop="16dp"
                     app:sCenterTextString="切换账号"
                     app:sDividerLineType="none" />
 
                 <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    android:id="@+id/menu_about"
+                    android:id="@+id/menu_logout"
                     style="@style/InfoItem"
                     android:layout_marginTop="16dp"
                     app:sCenterTextColor="@color/xui_config_color_red"
