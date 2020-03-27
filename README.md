@@ -1,6 +1,6 @@
 # TemplateAppProject
 
-Android空壳模版工程，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate、XHttp2、友盟统计和walle多渠道打包)
+Android空壳模板工程，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate、XHttp2、友盟统计和walle多渠道打包)
 
 ## 关于我
 
@@ -36,15 +36,15 @@ Android空壳模版工程，快速搭建（集成了XUI、XUtil、XAOP、XPage�
 
 ## 更多资源
 
-* [简化版Android空壳模版工程](https://github.com/xuexiangjys/TemplateSimpleProject)
+* [简化版Android空壳模板工程](https://github.com/xuexiangjys/TemplateSimpleProject)
 
 * [X-Library系列Android应用框架详解](https://github.com/xuexiangjys/AndroidAdvancedLearning/blob/master/framework/X-Library系列Android应用框架详解.md)
 
-* [Flutter空壳模版工程](https://github.com/xuexiangjys/flutter_template)
+* [Flutter空壳模板工程](https://github.com/xuexiangjys/flutter_template)
 
 ## 使用方式
 
-[视频教程-如何使用模版工程](https://www.bilibili.com/video/av92348545)
+[视频教程-如何使用模板工程](https://www.bilibili.com/video/av92348545)
 
 1.克隆项目
 
