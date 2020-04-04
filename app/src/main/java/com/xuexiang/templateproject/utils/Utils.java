@@ -21,6 +21,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
@@ -28,6 +29,7 @@ import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
 
+import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
 
 import com.xuexiang.templateproject.R;
@@ -153,6 +155,21 @@ public final class Utils {
         Intent intent = new Intent(context, AgentWebActivity.class);
         intent.putExtra(KEY_URL, url);
         context.startActivity(intent);
+    }
+
+
+    /**
+     * 是否是深色的颜色
+     *
+     * @param color
+     * @return
+     */
+    public static boolean isColorDark(@ColorInt int color) {
+        double darkness =
+                1
+                        - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color))
+                        / 255;
+        return darkness >= 0.382;
     }
 
 

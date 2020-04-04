@@ -20,6 +20,7 @@
     android:id="@+id/nav_header"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:background="?attr/colorAccent"
     android:orientation="vertical">
 
     <Space
@@ -49,7 +50,7 @@
         <TextView
             android:id="@+id/tv_avatar"
             style="@style/TextStyle.Title"
-            android:layout_marginStart="?attr/xui_config_content_spacing_horizontal"/>
+            android:layout_marginStart="?attr/xui_config_content_spacing_horizontal" />
 
     </LinearLayout>
 
@@ -58,10 +59,10 @@
         style="@style/TextStyle.Explain"
         android:layout_width="240dp"
         android:layout_marginTop="?attr/xui_config_content_spacing_vertical"
+        android:gravity="start"
         android:paddingLeft="24dp"
         android:paddingRight="24dp"
-        android:singleLine="false"
-        android:gravity="start"/>
+        android:singleLine="false" />
 
     <Space
         android:layout_width="wrap_content"
