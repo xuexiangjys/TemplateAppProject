@@ -95,7 +95,7 @@ dependencies {
     //分包
     implementation deps.androidx.multidex
 
-    implementation 'com.alibaba.android:vlayout:1.2.8'
+    implementation 'com.alibaba.android:vlayout:1.2.36'
     //下拉刷新
     implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-header:1.1.5'
     implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-layout:1.1.5'
