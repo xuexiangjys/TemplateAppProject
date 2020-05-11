@@ -32,6 +32,10 @@ Android空壳模板工程，快速搭建（集成了XUI、XUtil、XAOP、XPage�
 
 * [butterknife 控件依赖注入框架](https://github.com/JakeWharton/butterknife)
 
+* [vlayout 阿里巴巴开源淘宝多布局组件](https://github.com/alibaba/vlayout)
+
+* [MMKV 腾讯开源键值对存储](https://github.com/Tencent/MMKV)
+
 * [leakcanary 内存泄漏检测](https://github.com/square/leakcanary)
 
 ## 更多资源
