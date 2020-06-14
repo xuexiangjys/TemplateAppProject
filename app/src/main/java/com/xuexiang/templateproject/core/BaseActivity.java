@@ -25,12 +25,11 @@ import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.CoreSwitchBean;
 import com.xuexiang.xrouter.facade.service.SerializationService;
 import com.xuexiang.xrouter.launcher.XRouter;
-import com.xuexiang.xui.XUI;
 import com.xuexiang.xui.widget.slideback.SlideBack;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import uk.co.chrisjenx.calligraphy.CalligraphyContextWrapper;
+import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 /**
  * 基础容器Activity
@@ -45,7 +44,7 @@ public class BaseActivity extends XPageActivity {
     @Override
     protected void attachBaseContext(Context newBase) {
         //注入字体
-        super.attachBaseContext(CalligraphyContextWrapper.wrap(newBase));
+        super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
     /**
