@@ -21,7 +21,7 @@ import android.app.Application;
 
 import com.xuexiang.templateproject.MyApp;
 import com.xuexiang.templateproject.core.BaseActivity;
-import com.xuexiang.templateproject.utils.MMKVUtils;
+import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xhttp2.XHttpSDK;
@@ -72,7 +72,7 @@ public final class XBasicLibInit {
      */
     private static void initXUtil(Application application) {
         XUtil.debug(MyApp.isDebug());
-        MMKVUtils.init(application);
+        TokenUtils.init(application);
     }
 
     /**

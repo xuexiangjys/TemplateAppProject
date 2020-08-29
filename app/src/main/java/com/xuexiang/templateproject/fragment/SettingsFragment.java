@@ -19,10 +19,13 @@ package com.xuexiang.templateproject.fragment;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
+import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xui.widget.textview.supertextview.SuperTextView;
+import com.xuexiang.xutil.XUtil;
 
 import butterknife.BindView;
 
@@ -64,7 +67,7 @@ public class SettingsFragment extends BaseFragment implements SuperTextView.OnSu
     @SingleClick
     @Override
     public void onClick(SuperTextView superTextView) {
-        switch(superTextView.getId()) {
+        switch (superTextView.getId()) {
             case R.id.menu_common:
             case R.id.menu_privacy:
             case R.id.menu_push:
@@ -72,8 +75,21 @@ public class SettingsFragment extends BaseFragment implements SuperTextView.OnSu
                 XToastUtils.toast(superTextView.getLeftString());
                 break;
             case R.id.menu_change_account:
-            case R.id.menu_logout:
                 XToastUtils.toast(superTextView.getCenterString());
+                break;
+            case R.id.menu_logout:
+                DialogLoader.getInstance().showConfirmDialog(
+                        getContext(),
+                        getString(R.string.lab_logout_confirm),
+                        getString(R.string.lab_yes),
+                        (dialog, which) -> {
+                            dialog.dismiss();
+                            XUtil.getActivityLifecycleHelper().exit();
+                            TokenUtils.handleLogoutSuccess();
+                        },
+                        getString(R.string.lab_no),
+                        (dialog, which) -> dialog.dismiss()
+                );
                 break;
             default:
                 break;

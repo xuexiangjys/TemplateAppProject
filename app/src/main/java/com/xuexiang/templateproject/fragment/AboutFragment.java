@@ -39,11 +39,11 @@ import butterknife.BindView;
 @Page(name = "关于")
 public class AboutFragment extends BaseFragment {
 
-    @BindView(R.id.version)
+    @BindView(R.id.tv_version)
     TextView mVersionTextView;
     @BindView(R.id.about_list)
     XUIGroupListView mAboutGroupListView;
-    @BindView(R.id.copyright)
+    @BindView(R.id.tv_copyright)
     TextView mCopyrightTextView;
 
     @Override

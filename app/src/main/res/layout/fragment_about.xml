@@ -40,7 +40,15 @@
                     app:srcCompat="@drawable/ic_logo_app" />
 
                 <TextView
-                    android:id="@+id/version"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/app_name"
+                    android:textColor="@color/xui_config_color_gray_3"
+                    android:textSize="16sp" />
+
+                <TextView
+                    android:id="@+id/tv_version"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
@@ -59,7 +67,7 @@
                     android:layout_weight="1" />
 
                 <TextView
-                    android:id="@+id/copyright"
+                    android:id="@+id/tv_copyright"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="25dp"

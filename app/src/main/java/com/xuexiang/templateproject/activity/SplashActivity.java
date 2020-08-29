@@ -20,7 +20,8 @@ package com.xuexiang.templateproject.activity;
 import android.view.KeyEvent;
 
 import com.xuexiang.templateproject.R;
-import com.xuexiang.templateproject.utils.MMKVUtils;
+import com.xuexiang.templateproject.utils.SettingUtils;
+import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.xui.utils.KeyboardUtils;
 import com.xuexiang.xui.widget.activity.BaseSplashActivity;
@@ -56,18 +57,24 @@ public class SplashActivity extends BaseSplashActivity implements CancelAdapt {
      */
     @Override
     protected void onSplashFinished() {
-        boolean isAgree = MMKVUtils.getBoolean("key_agree_privacy", false);
-        if (isAgree) {
-            ActivityUtils.startActivity(MainActivity.class);
-            finish();
+        if (SettingUtils.isAgreePrivacy()) {
+            loginOrGoMainPage();
         } else {
             Utils.showPrivacyDialog(this, (dialog, which) -> {
                 dialog.dismiss();
-                MMKVUtils.put("key_agree_privacy", true);
-                ActivityUtils.startActivity(MainActivity.class);
-                finish();
+                SettingUtils.setIsAgreePrivacy(true);
+                loginOrGoMainPage();
             });
         }
+    }
+
+    private void loginOrGoMainPage() {
+        if (TokenUtils.hasToken()) {
+            ActivityUtils.startActivity(MainActivity.class);
+        } else {
+            ActivityUtils.startActivity(LoginActivity.class);
+        }
+        finish();
     }
 
     /**

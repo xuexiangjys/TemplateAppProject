@@ -248,4 +248,23 @@ public final class MMKVUtils {
     }
 
 
+    /**
+     * 判断键值对是否存在
+     *
+     * @param key 键
+     * @return 键值对是否存在
+     */
+    public static boolean containsKey(String key) {
+        return getsMMKV().containsKey(key);
+    }
+
+    /**
+     * 清除指定键值对
+     *
+     * @param key 键
+     */
+    public static void remove(String key) {
+        getsMMKV().remove(key).apply();
+    }
+
 }
