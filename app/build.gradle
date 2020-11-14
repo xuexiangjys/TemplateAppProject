@@ -113,7 +113,6 @@ dependencies {
     //ANR异常捕获
     implementation 'com.github.anrwatchdog:anrwatchdog:1.4.0'
 
-
     //美团多渠道打包
     implementation 'com.meituan.android.walle:library:1.1.6'
 }
