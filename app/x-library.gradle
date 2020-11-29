@@ -20,7 +20,7 @@ project.configurations.each { configuration ->
         //XHttp2
         configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys:XHttp2:2.0.1'))
         configuration.dependencies.add(getProject().dependencies.create(deps.rxjava2))
-        configuration.dependencies.add(getProject().dependencies.create(deps.rx_android))
+        configuration.dependencies.add(getProject().dependencies.create(deps.rxandroid))
         configuration.dependencies.add(getProject().dependencies.create('com.squareup.okhttp3:okhttp:3.10.0'))
         configuration.dependencies.add(getProject().dependencies.create(deps.gson))
         //XPage
