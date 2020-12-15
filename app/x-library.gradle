@@ -24,7 +24,7 @@ project.configurations.each { configuration ->
         configuration.dependencies.add(getProject().dependencies.create('com.squareup.okhttp3:okhttp:3.10.0'))
         configuration.dependencies.add(getProject().dependencies.create(deps.gson))
         //XPage
-        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XPage:xpage-lib:3.0.1'))
+        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XPage:xpage-lib:3.0.3'))
         configuration.dependencies.add(getProject().dependencies.create(deps.butterknife.runtime))
         //页面路由
         configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XRouter:xrouter-runtime:1.0.1'))
@@ -32,7 +32,7 @@ project.configurations.each { configuration ->
 
     if (configuration.name == "annotationProcessor") {
         //XPage
-        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XPage:xpage-compiler:3.0.1'))
+        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XPage:xpage-compiler:3.0.3'))
         configuration.dependencies.add(getProject().dependencies.create(deps.butterknife.compiler))
         //页面路由
         configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XRouter:xrouter-compiler:1.0.1'))

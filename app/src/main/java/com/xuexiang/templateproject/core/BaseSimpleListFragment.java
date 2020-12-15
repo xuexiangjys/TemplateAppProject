@@ -84,10 +84,11 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     //==============================页面跳转api===================================//
+
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazz
+     * @param clazz 页面的类
      * @param <T>
      * @return
      */
@@ -98,14 +99,14 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazzName
+     * @param pageName 页面名
      * @param <T>
      * @return
      */
-    public <T extends XPageFragment> Fragment openNewPage(String clazzName) {
-        return new PageOption(clazzName)
+    public <T extends XPageFragment> Fragment openNewPage(String pageName) {
+        return new PageOption(pageName)
                 .setAnim(CoreAnim.slide)
                 .setNewActivity(true)
                 .open(this);
@@ -113,9 +114,10 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
 
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazz
+     * @param clazz                页面的类
+     * @param containActivityClazz 页面容器
      * @param <T>
      * @return
      */
@@ -127,9 +129,11 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开一个新的页面【建议只在主tab页使用】
      *
-     * @param clazz
+     * @param clazz 页面的类
+     * @param key   入参的键
+     * @param value 入参的值
      * @param <T>
      * @return
      */
@@ -162,9 +166,12 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz          页面的类
+     * @param addToBackStack 是否加入回退栈
+     * @param key            入参的键
+     * @param value          入参的值
      * @param <T>
      * @return
      */
@@ -176,9 +183,11 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz 页面的类
+     * @param key   入参的键
+     * @param value 入参的值
      * @param <T>
      * @return
      */
@@ -187,9 +196,12 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz          页面的类
+     * @param addToBackStack 是否加入回退栈
+     * @param key            入参的键
+     * @param value          入参的值
      * @param <T>
      * @return
      */
@@ -199,9 +211,11 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     /**
-     * 打开一个新的页面
+     * 打开页面
      *
-     * @param clazz
+     * @param clazz 页面的类
+     * @param key   入参的键
+     * @param value 入参的值
      * @param <T>
      * @return
      */
@@ -214,7 +228,10 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     /**
      * 打开页面,需要结果返回
      *
-     * @param clazz
+     * @param clazz       页面的类
+     * @param key         入参的键
+     * @param value       入参的值
+     * @param requestCode 请求码
      * @param <T>
      * @return
      */
@@ -226,7 +243,10 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     /**
      * 打开页面,需要结果返回
      *
-     * @param clazz
+     * @param clazz       页面的类
+     * @param key         入参的键
+     * @param value       入参的值
+     * @param requestCode 请求码
      * @param <T>
      * @return
      */
@@ -240,22 +260,8 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     /**
      * 打开页面,需要结果返回
      *
-     * @param clazz
-     * @param <T>
-     * @return
-     */
-    public <T extends XPageFragment> Fragment openNewPageForResult(Class<T> clazz, String key, String value, int requestCode) {
-        return new PageOption(clazz)
-                .setNewActivity(true)
-                .setRequestCode(requestCode)
-                .putString(key, value)
-                .open(this);
-    }
-
-    /**
-     * 打开页面,需要结果返回
-     *
-     * @param clazz
+     * @param clazz       页面的类
+     * @param requestCode 请求码
      * @param <T>
      * @return
      */
@@ -268,8 +274,8 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     /**
      * 序列化对象
      *
-     * @param object
-     * @return
+     * @param object 需要序列化的对象
+     * @return 序列化结果
      */
     public String serializeObject(Object object) {
         return XRouter.getInstance().navigation(SerializationService.class).object2Json(object);
