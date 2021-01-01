@@ -6,7 +6,7 @@ project.configurations.each { configuration ->
     if (configuration.name == "implementation") {
         //为Project加入X-Library依赖
         //XUI框架
-        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys:XUI:1.1.5'))
+        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys:XUI:1.1.6'))
         configuration.dependencies.add(getProject().dependencies.create(deps.androidx.appcompat))
         configuration.dependencies.add(getProject().dependencies.create(deps.androidx.recyclerview))
         configuration.dependencies.add(getProject().dependencies.create(deps.androidx.design))
