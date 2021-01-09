@@ -114,7 +114,6 @@ dependencies {
     implementation 'me.samlss:broccoli:1.0.0'
 
     implementation 'com.zzhoujay.richtext:richtext:3.0.8'
-    implementation 'com.zzhoujay:html:1.0.2'
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
 
     //ANR异常捕获
