@@ -62,15 +62,15 @@
                     style="@style/TextStyle.Explain"
                     android:layout_gravity="end|center_vertical"
                     android:layout_marginStart="4dp"
-                    android:textColor="@color/xui_config_color_pure_black"
-                    tools:text="xuexiangjys" />
+                    android:text="xuexiangjys"
+                    android:textColor="@color/xui_config_color_pure_black" />
             </LinearLayout>
 
             <TextView
                 android:id="@+id/tv_tag"
                 style="@style/TextStyle.Explain"
                 android:layout_gravity="end|center_vertical"
-                tools:text="Java" />
+                android:text="Java" />
 
         </FrameLayout>
 
@@ -93,8 +93,8 @@
                     android:gravity="start|center_vertical"
                     android:maxLines="2"
                     android:singleLine="false"
-                    android:textColor="@color/xui_config_color_pure_black"
-                    tools:text="深度解析RocketMQ消息发送的高可用设计" />
+                    android:text="深度解析RocketMQ消息发送的高可用设计"
+                    android:textColor="@color/xui_config_color_pure_black" />
 
                 <TextView
                     android:id="@+id/tv_summary"
@@ -104,8 +104,8 @@
                     android:gravity="start|center_vertical"
                     android:maxLines="2"
                     android:singleLine="false"
-                    android:textColor="?attr/xui_config_color_content_text"
-                    tools:text="从rocketmq topic的创建机制可知，一个topic对应有多个消息队列，那么我们在发送消息时，是如何选择消息队列进行发送的？" />
+                    android:text="从rocketmq topic的创建机制可知，一个topic对应有多个消息队列，那么我们在发送消息时，是如何选择消息队列进行发送的？"
+                    android:textColor="?attr/xui_config_color_content_text" />
 
             </LinearLayout>
 
@@ -142,7 +142,7 @@
                     android:id="@+id/tv_praise"
                     style="@style/TextStyle.Explain"
                     android:layout_marginStart="5dp"
-                    tools:text="点赞" />
+                    android:text="点赞" />
 
 
                 <androidx.appcompat.widget.AppCompatImageView
@@ -156,8 +156,7 @@
                     android:id="@+id/tv_comment"
                     style="@style/TextStyle.Explain"
                     android:layout_marginStart="5dp"
-                    tools:text="评论" />
-
+                    android:text="评论" />
 
             </LinearLayout>
 
@@ -165,7 +164,7 @@
                 android:id="@+id/tv_read"
                 style="@style/TextStyle.Explain"
                 android:layout_gravity="center_vertical|end"
-                tools:text="阅读量 123" />
+                android:text="阅读量 123" />
 
         </FrameLayout>
 

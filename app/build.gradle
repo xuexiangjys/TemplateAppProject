@@ -110,6 +110,9 @@ dependencies {
     implementation 'com.umeng.umsdk:analytics:8.0.2'
     implementation 'com.umeng.umsdk:common:2.0.2'
 
+    //预加载占位控件
+    implementation 'me.samlss:broccoli:1.0.0'
+
     //ANR异常捕获
     implementation 'com.github.anrwatchdog:anrwatchdog:1.4.0'
 

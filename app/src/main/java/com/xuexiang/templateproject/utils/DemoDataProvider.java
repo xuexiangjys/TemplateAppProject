@@ -117,4 +117,18 @@ public class DemoDataProvider {
         return list;
     }
 
+    /**
+     * 用于占位的空信息
+     *
+     * @return
+     */
+    @MemoryCache
+    public static List<NewInfo> getEmptyNewInfo() {
+        List<NewInfo> list = new ArrayList<>();
+        for (int i = 0; i < 5; i++) {
+            list.add(new NewInfo());
+        }
+        return list;
+    }
+
 }

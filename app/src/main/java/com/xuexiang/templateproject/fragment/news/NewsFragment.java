@@ -26,6 +26,7 @@ import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
 import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.adapter.base.broccoli.BroccoliSimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
@@ -43,6 +44,7 @@ import com.xuexiang.xui.widget.imageview.ImageLoader;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 
 import butterknife.BindView;
+import me.samlss.broccoli.Broccoli;
 
 /**
  * 首页动态
@@ -130,9 +132,9 @@ public class NewsFragment extends BaseFragment {
         };
 
         //资讯
-        mNewsAdapter = new SimpleDelegateAdapter<NewInfo>(R.layout.adapter_news_card_view_list_item, new LinearLayoutHelper()) {
+        mNewsAdapter = new BroccoliSimpleDelegateAdapter<NewInfo>(R.layout.adapter_news_card_view_list_item, new LinearLayoutHelper(), DemoDataProvider.getEmptyNewInfo()) {
             @Override
-            protected void bindData(@NonNull RecyclerViewHolder holder, int position, NewInfo model) {
+            protected void onBindData(RecyclerViewHolder holder, NewInfo model, int position) {
                 if (model != null) {
                     holder.text(R.id.tv_user_name, model.getUserName());
                     holder.text(R.id.tv_tag, model.getTag());
@@ -145,6 +147,20 @@ public class NewsFragment extends BaseFragment {
 
                     holder.click(R.id.card_view, v -> Utils.goWeb(getContext(), model.getDetailUrl()));
                 }
+            }
+
+            @Override
+            protected void onBindBroccoli(RecyclerViewHolder holder, Broccoli broccoli) {
+                broccoli.addPlaceholders(
+                        holder.findView(R.id.tv_user_name),
+                        holder.findView(R.id.tv_tag),
+                        holder.findView(R.id.tv_title),
+                        holder.findView(R.id.tv_summary),
+                        holder.findView(R.id.tv_praise),
+                        holder.findView(R.id.tv_comment),
+                        holder.findView(R.id.tv_read),
+                        holder.findView(R.id.iv_image)
+                );
             }
         };
 
