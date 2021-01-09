@@ -68,5 +68,9 @@
     <string name="lab_service_protocol"><![CDATA[<用户协议>]]></string>
     <string name="lab_logout_confirm">是否确认退出账号？</string>
     <string name="title_jump_login">跳过</string>
+    <string name="label_previous">上一条</string>
+    <string name="label_next">下一条</string>
+    <string name="tip_ignore_message">以后不再提示此类信息</string>
+    <string name="tip_title">你知道吗？</string>
 
 </resources>

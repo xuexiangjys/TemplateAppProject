@@ -4,6 +4,8 @@
     <color name="colorPrimaryDark">#299EE3</color>
     <color name="colorAccent">#299EE3</color>
 
+    <color name="config_color_select_bg">#FFF1F1F1</color>
+
 
     <!--Toast，可自定义喜欢的颜色-->
     <color name="toast_default_text_color" tools:ignore="PrivateResource">@color/xui_config_color_white</color>

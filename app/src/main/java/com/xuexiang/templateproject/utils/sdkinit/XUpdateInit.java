@@ -65,8 +65,6 @@ public final class XUpdateInit {
 
     /**
      * 进行版本更新检查
-     *
-     * @param context
      */
     public static void checkUpdate(Context context, boolean needErrorTip) {
         XUpdate.newBuild(context).updateUrl(KEY_UPDATE_URL).update();
