@@ -29,11 +29,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager.widget.ViewPager;
+import androidx.viewpager2.widget.ViewPager2;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.xuexiang.templateproject.R;
+import com.xuexiang.templateproject.adapter.base.FragmentStateViewPager2Adapter;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
@@ -45,7 +46,6 @@ import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.templateproject.widget.GuideTipsDialog;
 import com.xuexiang.xaop.annotation.SingleClick;
-import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.ThemeUtils;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
@@ -56,18 +56,20 @@ import com.xuexiang.xutil.display.Colors;
 
 import butterknife.BindView;
 
+import static androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
+
 /**
  * 程序主页面,只是一个简单的Tab例子
  *
  * @author xuexiang
  * @since 2019-07-07 23:53
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener, ViewPager.OnPageChangeListener, BottomNavigationView.OnNavigationItemSelectedListener, ClickUtils.OnClick2ExitListener, Toolbar.OnMenuItemClickListener {
+public class MainActivity extends BaseActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener, ClickUtils.OnClick2ExitListener, Toolbar.OnMenuItemClickListener {
 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.view_pager)
-    ViewPager viewPager;
+    ViewPager2 viewPager;
     /**
      * 底部导航栏
      */
@@ -116,10 +118,12 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 new TrendingFragment(),
                 new ProfileFragment()
         };
-        FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager(), fragments);
+        FragmentStateViewPager2Adapter adapter = new FragmentStateViewPager2Adapter(this);
+        for (int i = 0; i < mTitles.length; i++) {
+            adapter.addFragment(fragments[i], mTitles[i]);
+        }
         viewPager.setOffscreenPageLimit(mTitles.length - 1);
         viewPager.setAdapter(adapter);
-
         GuideTipsDialog.showTips(this);
     }
 
@@ -179,7 +183,15 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         });
 
         //主页事件监听
-        viewPager.addOnPageChangeListener(this);
+        viewPager.registerOnPageChangeCallback(new OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                MenuItem item = bottomNavigation.getMenu().getItem(position);
+                toolbar.setTitle(item.getTitle());
+                item.setChecked(true);
+                updateSideNavStatus(item);
+            }
+        });
         bottomNavigation.setOnNavigationItemSelectedListener(this);
     }
 
@@ -221,27 +233,6 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             default:
                 break;
         }
-    }
-
-    //=============ViewPager===================//
-
-    @Override
-    public void onPageScrolled(int i, float v, int i1) {
-
-    }
-
-    @Override
-    public void onPageSelected(int position) {
-        MenuItem item = bottomNavigation.getMenu().getItem(position);
-        toolbar.setTitle(item.getTitle());
-        item.setChecked(true);
-
-        updateSideNavStatus(item);
-    }
-
-    @Override
-    public void onPageScrollStateChanged(int i) {
-
     }
 
     //================Navigation================//
