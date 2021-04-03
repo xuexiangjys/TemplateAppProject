@@ -29,12 +29,11 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
 import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.viewpager2.widget.ViewPager2;
+import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 import com.xuexiang.templateproject.R;
-import com.xuexiang.templateproject.adapter.base.FragmentStateViewPager2Adapter;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.fragment.AboutFragment;
@@ -46,6 +45,7 @@ import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.templateproject.widget.GuideTipsDialog;
 import com.xuexiang.xaop.annotation.SingleClick;
+import com.xuexiang.xui.adapter.FragmentAdapter;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.ThemeUtils;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
@@ -55,8 +55,6 @@ import com.xuexiang.xutil.common.CollectionUtils;
 import com.xuexiang.xutil.display.Colors;
 
 import butterknife.BindView;
-
-import static androidx.viewpager2.widget.ViewPager2.OnPageChangeCallback;
 
 /**
  * 程序主页面,只是一个简单的Tab例子
@@ -69,7 +67,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @BindView(R.id.toolbar)
     Toolbar toolbar;
     @BindView(R.id.view_pager)
-    ViewPager2 viewPager;
+    ViewPager viewPager;
     /**
      * 底部导航栏
      */
@@ -118,10 +116,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 new TrendingFragment(),
                 new ProfileFragment()
         };
-        FragmentStateViewPager2Adapter adapter = new FragmentStateViewPager2Adapter(this);
-        for (int i = 0; i < mTitles.length; i++) {
-            adapter.addFragment(fragments[i], mTitles[i]);
-        }
+        FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager(), fragments);
         viewPager.setOffscreenPageLimit(mTitles.length - 1);
         viewPager.setAdapter(adapter);
         GuideTipsDialog.showTips(this);
@@ -181,15 +176,24 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
             }
             return true;
         });
-
         //主页事件监听
-        viewPager.registerOnPageChangeCallback(new OnPageChangeCallback() {
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
             @Override
             public void onPageSelected(int position) {
                 MenuItem item = bottomNavigation.getMenu().getItem(position);
                 toolbar.setTitle(item.getTitle());
                 item.setChecked(true);
                 updateSideNavStatus(item);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
             }
         });
         bottomNavigation.setOnNavigationItemSelectedListener(this);
@@ -215,7 +219,10 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public boolean onMenuItemClick(MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_privacy:
-                Utils.showPrivacyDialog(this, null);
+                GuideTipsDialog.showTipsForce(this);
+                break;
+            case R.id.action_about:
+                openNewPage(AboutFragment.class);
                 break;
             default:
                 break;
