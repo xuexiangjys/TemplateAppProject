@@ -54,11 +54,8 @@ public class MyApp extends Application {
 
         XUpdateInit.init(this);
 
-        //运营统计数据运行时不初始化
-        if (!MyApp.isDebug()) {
-            UMengInit.init(this);
-        }
-
+        //运营统计数据
+        UMengInit.init(this);
         //ANR监控
         ANRWatchDogInit.init();
     }

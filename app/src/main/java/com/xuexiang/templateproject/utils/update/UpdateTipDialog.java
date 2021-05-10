@@ -39,6 +39,12 @@ public class UpdateTipDialog extends AppCompatActivity implements DialogInterfac
 
     public static final String KEY_CONTENT = "com.xuexiang.templateproject.utils.update.KEY_CONTENT";
 
+    // TODO: 2021/5/11 填写你应用下载类型名
+    public static final String DOWNLOAD_TYPE_NAME = "蒲公英";
+
+    // TODO: 2021/5/11 填写你应用下载页面的链接
+    private static final String DOWNLOAD_URL = "这里填写你应用下载页面的链接";
+
     /**
      * 显示版本更新重试提示弹窗
      *
@@ -57,12 +63,12 @@ public class UpdateTipDialog extends AppCompatActivity implements DialogInterfac
 
         String content = getIntent().getStringExtra(KEY_CONTENT);
         if (TextUtils.isEmpty(content)) {
-            content = "Github下载速度太慢了，是否考虑切换蒲公英下载？";
+            content = "应用下载速度太慢了，是否考虑切换" + DOWNLOAD_TYPE_NAME + "下载？";
         }
 
         DialogLoader.getInstance().showConfirmDialog(this, content, "是", (dialog, which) -> {
             dialog.dismiss();
-//            Utils.goWeb(UpdateTipDialog.this, "这里填写你应用下载页面的链接");
+            Utils.goWeb(UpdateTipDialog.this, DOWNLOAD_URL);
         }, "否")
                 .setOnDismissListener(this);
 

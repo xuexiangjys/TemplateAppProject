@@ -32,12 +32,19 @@ public final class SettingUtils {
     }
 
     /**
+     * 获取是否同意隐私政策
+     *
      * @return 是否同意隐私政策
      */
     public static boolean isAgreePrivacy() {
         return MMKVUtils.getBoolean(IS_AGREE_PRIVACY_KEY, false);
     }
 
+    /**
+     * 设置是否同意隐私政策
+     *
+     * @param isAgreePrivacy 是否同意隐私政策
+     */
     public static void setIsAgreePrivacy(boolean isAgreePrivacy) {
         MMKVUtils.put(IS_AGREE_PRIVACY_KEY, isAgreePrivacy);
     }

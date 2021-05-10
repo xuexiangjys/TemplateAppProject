@@ -93,6 +93,7 @@ public final class TokenUtils {
         //登出时，清除账号信息
         clearToken();
         XToastUtils.success("登出成功！");
+        SettingUtils.setIsAgreePrivacy(false);
         //跳转到登录页
         ActivityUtils.startActivity(LoginActivity.class);
     }

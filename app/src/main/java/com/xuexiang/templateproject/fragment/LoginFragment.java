@@ -28,6 +28,7 @@ import com.xuexiang.templateproject.utils.SettingUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
+import com.xuexiang.templateproject.utils.sdkinit.UMengInit;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
@@ -92,6 +93,7 @@ public class LoginFragment extends BaseFragment {
             Utils.showPrivacyDialog(getContext(), (dialog, which) -> {
                 dialog.dismiss();
                 SettingUtils.setIsAgreePrivacy(true);
+                UMengInit.init(getContext());
             });
         }
     }
