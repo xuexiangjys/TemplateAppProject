@@ -50,13 +50,13 @@ public class MyApp extends Application {
      * 初始化基础库
      */
     private void initLibs() {
+        // X系列基础库初始化
         XBasicLibInit.init(this);
-
+        // 版本更新初始化
         XUpdateInit.init(this);
-
-        //运营统计数据
+        // 运营统计数据
         UMengInit.init(this);
-        //ANR监控
+        // ANR监控
         ANRWatchDogInit.init();
     }
 

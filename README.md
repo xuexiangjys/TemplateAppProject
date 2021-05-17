@@ -97,6 +97,7 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 myie9 | 100￥ | 微信
 *鸥 | 10.24￥ | 微信
 **家 | 10.24￥ | 支付宝
+*寻 | 20.48￥ | 微信
 
 ## 联系方式
 

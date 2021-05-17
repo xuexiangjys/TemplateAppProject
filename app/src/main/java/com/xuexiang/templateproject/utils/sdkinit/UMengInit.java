@@ -28,6 +28,7 @@ import com.umeng.commonsdk.UMConfigure;
 import com.xuexiang.templateproject.BuildConfig;
 import com.xuexiang.templateproject.MyApp;
 import com.xuexiang.templateproject.utils.SettingUtils;
+import com.xuexiang.xui.XUI;
 
 /**
  * UMeng 统计 SDK初始化
@@ -42,6 +43,13 @@ public final class UMengInit {
     }
 
     private static String DEFAULT_CHANNEL_ID = "github";
+
+    /**
+     * 初始化SDK,合规指南【先进行预初始化，如果用户隐私同意后可以初始化UmengSDK进行信息上报】
+     */
+    public static void init() {
+        init(XUI.getContext());
+    }
 
     /**
      * 初始化SDK,合规指南【先进行预初始化，如果用户隐私同意后可以初始化UmengSDK进行信息上报】

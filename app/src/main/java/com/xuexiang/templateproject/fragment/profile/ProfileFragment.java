@@ -19,8 +19,8 @@ package com.xuexiang.templateproject.fragment.profile;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
-import com.xuexiang.templateproject.fragment.AboutFragment;
-import com.xuexiang.templateproject.fragment.SettingsFragment;
+import com.xuexiang.templateproject.fragment.other.AboutFragment;
+import com.xuexiang.templateproject.fragment.other.SettingsFragment;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
