@@ -34,6 +34,9 @@ import androidx.annotation.NonNull;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.webview.AgentWebActivity;
+import com.xuexiang.templateproject.fragment.other.ServiceProtocolFragment;
+import com.xuexiang.xpage.base.XPageFragment;
+import com.xuexiang.xpage.core.PageOption;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
@@ -41,6 +44,8 @@ import com.xuexiang.xui.widget.dialog.materialdialog.MaterialDialog;
 import com.xuexiang.xutil.XUtil;
 
 import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
+import static com.xuexiang.templateproject.fragment.other.ServiceProtocolFragment.KEY_IS_IMMERSIVE;
+import static com.xuexiang.templateproject.fragment.other.ServiceProtocolFragment.KEY_PROTOCOL_TITLE;
 
 /**
  * 工具类
@@ -159,6 +164,21 @@ public final class Utils {
 
 
     /**
+     * 打开用户协议和隐私协议
+     *
+     * @param fragment
+     * @param isPrivacy   是否是隐私协议
+     * @param isImmersive 是否沉浸式
+     */
+    public static void gotoProtocol(XPageFragment fragment, boolean isPrivacy, boolean isImmersive) {
+        PageOption.to(ServiceProtocolFragment.class)
+                .putString(KEY_PROTOCOL_TITLE, isPrivacy ? ResUtils.getString(R.string.title_privacy_protocol) : ResUtils.getString(R.string.title_user_protocol))
+                .putBoolean(KEY_IS_IMMERSIVE, isImmersive)
+                .open(fragment);
+
+    }
+
+    /**
      * 是否是深色的颜色
      *
      * @param color
@@ -171,6 +191,5 @@ public final class Utils {
                         / 255;
         return darkness >= 0.382;
     }
-
 
 }

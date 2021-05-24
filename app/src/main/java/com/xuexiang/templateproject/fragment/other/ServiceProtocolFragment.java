@@ -41,7 +41,7 @@ import butterknife.BindView;
 public class ServiceProtocolFragment extends BaseFragment {
 
     public static final String KEY_PROTOCOL_TITLE = "key_protocol_title";
-
+    public static final String KEY_IS_IMMERSIVE = "key_is_immersive";
     /**
      * 用户协议asset本地保存路径
      */
@@ -54,6 +54,8 @@ public class ServiceProtocolFragment extends BaseFragment {
 
     @AutoWired(name = KEY_PROTOCOL_TITLE)
     String title;
+    @AutoWired(name = KEY_IS_IMMERSIVE)
+    boolean isImmersive;
     @BindView(R.id.tv_protocol_text)
     TextView tvProtocolText;
 
@@ -69,7 +71,7 @@ public class ServiceProtocolFragment extends BaseFragment {
 
     @Override
     protected TitleBar initTitle() {
-        return super.initTitle().setTitle(title).setImmersive(true);
+        return super.initTitle().setTitle(title).setImmersive(isImmersive);
     }
 
     /**
