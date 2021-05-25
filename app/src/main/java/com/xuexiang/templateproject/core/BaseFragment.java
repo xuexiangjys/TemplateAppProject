@@ -41,7 +41,9 @@ import java.io.Serializable;
 import java.lang.reflect.Type;
 
 /**
- * 基础fragment
+ * 基础fragment，使用XPage框架搭建
+ *
+ * 具体使用参见：https://github.com/xuexiangjys/XPage/wiki
  *
  * @author xuexiang
  * @since 2018/5/25 下午3:44

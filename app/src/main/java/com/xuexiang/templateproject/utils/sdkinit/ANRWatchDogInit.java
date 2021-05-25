@@ -44,7 +44,6 @@ public final class ANRWatchDogInit {
      */
     private static final int ANR_DURATION = 4000;
 
-
     /**
      * ANR静默处理【就是不处理，直接记录一下日志】
      */
