@@ -46,8 +46,6 @@ import com.xuexiang.xutil.app.ActivityUtils;
 import butterknife.BindView;
 import butterknife.OnClick;
 
-import static com.xuexiang.templateproject.fragment.other.ServiceProtocolFragment.KEY_PROTOCOL_TITLE;
-
 
 /**
  * 登录页面
@@ -99,22 +97,31 @@ public class LoginFragment extends BaseFragment {
     @Override
     protected void initViews() {
         mCountDownHelper = new CountDownButtonHelper(btnGetVerifyCode, 60);
-
         //隐私政策弹窗
         if (!SettingUtils.isAgreePrivacy()) {
             Utils.showPrivacyDialog(getContext(), (dialog, which) -> {
                 dialog.dismiss();
-                SettingUtils.setIsAgreePrivacy(true);
-                UMengInit.init();
-                ViewUtils.setChecked(cbProtocol, true);
+                handleSubmitPrivacy();
             });
         }
-        cbProtocol.setChecked(SettingUtils.isAgreePrivacy());
+        boolean isAgreePrivacy = SettingUtils.isAgreePrivacy();
+        cbProtocol.setChecked(isAgreePrivacy);
+        refreshButton(isAgreePrivacy);
         cbProtocol.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SettingUtils.setIsAgreePrivacy(isChecked);
-            ViewUtils.setEnabled(btnLogin, isChecked);
-            ViewUtils.setEnabled(mJumpView, isChecked);
+            refreshButton(isChecked);
         });
+    }
+
+    private void refreshButton(boolean isChecked) {
+        ViewUtils.setEnabled(btnLogin, isChecked);
+        ViewUtils.setEnabled(mJumpView, isChecked);
+    }
+
+    private void handleSubmitPrivacy() {
+        SettingUtils.setIsAgreePrivacy(true);
+        UMengInit.init();
+        ViewUtils.setChecked(cbProtocol, true);
     }
 
     @SingleClick
