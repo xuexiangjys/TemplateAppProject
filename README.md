@@ -8,7 +8,7 @@ Android空壳模板工程，快速搭建（集成了XUI、XUtil、XAOP、XPage�
 
 ## 效果
 
-![templateproject_demo.gif](https://img.rruu.net/image/5f7dc016ae329)
+![templateproject_demo.gif](https://ss.im5i.com/2021/06/14/6TjcD.gif)
 
 ## 集成介绍（请star支持）
 
@@ -62,17 +62,17 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 
 * 修改包名
 
-![templateproject_1.png](https://img.rruu.net/image/5f7dc0116fde9)
+![templateproject_1.png](https://ss.im5i.com/2021/06/14/6TEDn.png)
 
-![templateproject_2.png](https://img.rruu.net/image/5f7dc01368e64)
+![templateproject_2.png](https://ss.im5i.com/2021/06/14/6Tbgl.png)
 
 * 修改applicationId
 
-![templateproject_3.png](https://img.rruu.net/image/5f7dc0139f92d)
+![templateproject_3.png](https://ss.im5i.com/2021/06/14/6Ttu7.png)
 
 * 修改app_name
 
-![templateproject_5.png](https://img.rruu.net/image/5f7dc010d270d)
+![templateproject_5.png](https://ss.im5i.com/2021/06/14/6THCP.png)
 
 ## 项目打包
 
@@ -88,7 +88,7 @@ git clone https://github.com/xuexiangjys/TemplateAppProject.git
 
 > 你的打赏是我维护的动力，我将会列出所有打赏人员的清单在下方作为凭证，打赏前请留下打赏项目的备注！
 
-![pay.png](https://img.rruu.net/image/5f871d00045da)
+![pay.png](https://ss.im5i.com/2021/06/14/6twG6.png)
 
 感谢下面小伙伴的打赏：
 
@@ -103,4 +103,4 @@ myie9 | 100￥ | 微信
 
 > 更多资讯内容，欢迎扫描关注我的个人微信公众号:【我的Android开源之旅】
 
-![gzh_weixin.jpg](https://img.rruu.net/image/5f871cfff3194)
+![gzh_weixin.jpg](https://ss.im5i.com/2021/06/14/65yoL.jpg)
