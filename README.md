@@ -10,6 +10,10 @@ Android空壳模板工程，快速搭建（集成了XUI、XUtil、XAOP、XPage�
 
 ![templateproject_demo.gif](https://ss.im5i.com/2021/06/14/6TjcD.gif)
 
+## Star趋势图
+
+[![Stargazers over time](https://starchart.cc/xuexiangjys/TemplateAppProject.svg)](https://starchart.cc/xuexiangjys/TemplateAppProject)
+
 ## 集成介绍（请star支持）
 
 > 本项目是项目androidx项目。精选了X系列最实用的几个库，可大大提高开发的效率。
