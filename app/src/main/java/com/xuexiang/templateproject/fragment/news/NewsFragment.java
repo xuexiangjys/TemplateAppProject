@@ -116,7 +116,11 @@ public class NewsFragment extends BaseFragment {
                     holder.text(R.id.tv_title, item.getTitle().toString().substring(0, 1));
                     holder.text(R.id.tv_sub_title, item.getTitle());
 
-                    holder.click(R.id.ll_container, v -> XToastUtils.toast("点击了：" + item.getTitle()));
+                    holder.click(R.id.ll_container, v -> {
+                        XToastUtils.toast("点击了：" + item.getTitle());
+                        // 注意: 这里由于NewsFragment是使用Viewpager加载的，并非使用XPage加载的，因此没有承载Activity， 需要使用openNewPage。
+                        openNewPage(GridItemFragment.class, GridItemFragment.KEY_TITLE_NAME, item.getTitle());
+                    });
                 }
             }
         };
