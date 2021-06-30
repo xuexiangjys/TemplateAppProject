@@ -23,7 +23,7 @@
     <item android:bottom="@dimen/xui_config_app_logo_bottom">
         <bitmap
             android:gravity="center"
-            android:src="@mipmap/ic_launcher" />
+            android:src="@drawable/ic_splash_app_logo_xui" />
     </item>
 
     <item android:bottom="@dimen/xui_config_company_logo_bottom">
