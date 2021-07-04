@@ -24,7 +24,7 @@
     android:layout_marginTop="10dp"
     android:layout_marginEnd="16dp"
     android:layout_marginBottom="6dp"
-    app:cardBackgroundColor="@color/xui_config_color_white"
+    app:cardBackgroundColor="@color/xui_config_color_transparent"
     app:cardCornerRadius="8dp"
     app:cardElevation="4dp"
     app:cardPreventCornerOverlap="true"

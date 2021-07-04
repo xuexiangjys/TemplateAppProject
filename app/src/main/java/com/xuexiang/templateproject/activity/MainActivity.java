@@ -106,6 +106,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initViews() {
+        Utils.clearActivityBackground(this);
+
         mTitles = ResUtils.getStringArray(R.array.home_titles);
         toolbar.setTitle(mTitles[0]);
         toolbar.inflateMenu(R.menu.menu_main);
