@@ -121,7 +121,8 @@ public class LoginFragment extends BaseFragment {
     private void handleSubmitPrivacy() {
         SettingUtils.setIsAgreePrivacy(true);
         UMengInit.init();
-        ViewUtils.setChecked(cbProtocol, true);
+        // 应用市场不让默认勾选
+//        ViewUtils.setChecked(cbProtocol, true);
     }
 
     @SingleClick

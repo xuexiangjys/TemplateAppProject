@@ -17,20 +17,16 @@
 
 package com.xuexiang.templateproject.utils;
 
-import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.Spanned;
 import android.text.method.LinkMovementMethod;
 import android.text.style.ClickableSpan;
 import android.view.View;
-import android.view.Window;
 
 import androidx.annotation.ColorInt;
 import androidx.annotation.NonNull;
@@ -40,6 +36,7 @@ import com.xuexiang.templateproject.core.webview.AgentWebActivity;
 import com.xuexiang.templateproject.fragment.other.ServiceProtocolFragment;
 import com.xuexiang.xpage.base.XPageFragment;
 import com.xuexiang.xpage.core.PageOption;
+import com.xuexiang.xui.utils.ColorUtils;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.widget.dialog.DialogLoader;
 import com.xuexiang.xui.widget.dialog.materialdialog.DialogAction;
@@ -188,35 +185,6 @@ public final class Utils {
      * @return
      */
     public static boolean isColorDark(@ColorInt int color) {
-        double darkness =
-                1
-                        - (0.299 * Color.red(color) + 0.587 * Color.green(color) + 0.114 * Color.blue(color))
-                        / 255;
-        return darkness >= 0.382;
-    }
-
-
-    /**
-     * 去除窗口的背景色【解决过度绘制问题】
-     *
-     * @param activity 窗口
-     */
-    public static void clearActivityBackground(Activity activity) {
-        if (activity == null) {
-            return;
-        }
-        clearWindowBackground(activity.getWindow());
-    }
-
-    /**
-     * 去除窗口的背景色【解决过度绘制问题】
-     *
-     * @param window 窗口
-     */
-    public static void clearWindowBackground(Window window) {
-        if (window == null) {
-            return;
-        }
-        window.setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        return ColorUtils.isColorDark(color, 0.382);
     }
 }
