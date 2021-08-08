@@ -19,10 +19,13 @@ package com.xuexiang.templateproject.core;
 
 import android.content.res.Configuration;
 import android.os.Parcelable;
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.viewbinding.ViewBinding;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xuexiang.templateproject.core.http.loader.ProgressLoader;
@@ -42,15 +45,45 @@ import java.lang.reflect.Type;
 
 /**
  * 基础fragment，使用XPage框架搭建
- *
+ * <p>
  * 具体使用参见：https://github.com/xuexiangjys/XPage/wiki
  *
  * @author xuexiang
  * @since 2018/5/25 下午3:44
  */
-public abstract class BaseFragment extends XPageFragment {
+public abstract class BaseFragment<Binding extends ViewBinding> extends XPageFragment {
 
     private IProgressLoader mIProgressLoader;
+
+    /**
+     * ViewBinding
+     */
+    protected Binding binding;
+
+    @Override
+    protected View inflateView(LayoutInflater inflater, ViewGroup container) {
+        binding = viewBindingInflate(inflater, container);
+        return binding.getRoot();
+    }
+
+    /**
+     * 构建ViewBinding
+     *
+     * @param inflater  inflater
+     * @param container 容器
+     * @return ViewBinding
+     */
+    @NonNull
+    protected abstract Binding viewBindingInflate(LayoutInflater inflater, ViewGroup container);
+
+    /**
+     * 获取Binding
+     *
+     * @return Binding
+     */
+    public Binding getBinding() {
+        return binding;
+    }
 
     @Override
     protected void initPage() {
@@ -83,7 +116,7 @@ public abstract class BaseFragment extends XPageFragment {
     /**
      * 获取进度条加载者
      *
-     * @param message
+     * @param message 提示信息
      * @return 进度条加载者
      */
     public IProgressLoader getProgressLoader(String message) {
@@ -112,6 +145,7 @@ public abstract class BaseFragment extends XPageFragment {
             mIProgressLoader.dismissLoading();
         }
         super.onDestroyView();
+        binding = null;
     }
 
     @Override

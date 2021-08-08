@@ -157,24 +157,19 @@ public class GuideTipsDialog extends BaseDialog implements View.OnClickListener,
     @SingleClick(300)
     @Override
     public void onClick(View view) {
-        switch (view.getId()) {
-            case R.id.iv_close:
-                dismiss();
-                break;
-            case R.id.tv_previous:
-                if (mIndex > 0) {
-                    mIndex--;
-                    switchTipInfo(mIndex);
-                }
-                break;
-            case R.id.tv_next:
-                if (mIndex < mTips.size() - 1) {
-                    mIndex++;
-                    switchTipInfo(mIndex);
-                }
-                break;
-            default:
-                break;
+        int id = view.getId();
+        if (id == R.id.iv_close) {
+            dismiss();
+        } else if (id == R.id.tv_previous) {
+            if (mIndex > 0) {
+                mIndex--;
+                switchTipInfo(mIndex);
+            }
+        } else if (id == R.id.tv_next) {
+            if (mIndex < mTips.size() - 1) {
+                mIndex++;
+                switchTipInfo(mIndex);
+            }
         }
     }
 

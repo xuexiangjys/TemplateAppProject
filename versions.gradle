@@ -3,7 +3,7 @@ import java.util.regex.Pattern
 
 ext.deps = [:]
 def versions = [:]
-versions.android_gradle_plugin = "3.6.1"
+versions.android_gradle_plugin = "4.1.0"
 versions.android_maven_gradle_plugin = "2.0"
 versions.gradle_bintray_plugin = "1.8.0"
 versions.booster = "3.1.0"

@@ -17,6 +17,8 @@
 
 package com.xuexiang.templateproject.core.webview;
 
+import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
+
 import android.content.ClipData;
 import android.content.ClipboardManager;
 import android.content.Context;
@@ -29,6 +31,7 @@ import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.Gravity;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,9 +45,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.PopupMenu;
 import androidx.fragment.app.Fragment;
 
@@ -65,6 +68,7 @@ import com.just.agentweb.widget.IWebLayout;
 import com.xuexiang.templateproject.MyApp;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.databinding.FragmentAgentwebBinding;
 import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
@@ -77,11 +81,6 @@ import com.xuexiang.xutil.net.JsonUtil;
 
 import java.util.HashMap;
 
-import butterknife.BindView;
-import butterknife.OnClick;
-
-import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL;
-
 /**
  * 使用XPageFragment
  *
@@ -89,14 +88,7 @@ import static com.xuexiang.templateproject.core.webview.AgentWebFragment.KEY_URL
  * @since 2019-05-26 18:15
  */
 @Page(params = {KEY_URL})
-public class XPageWebViewFragment extends BaseFragment {
-
-    @BindView(R.id.iv_back)
-    AppCompatImageView mIvBack;
-    @BindView(R.id.view_line)
-    View mLineView;
-    @BindView(R.id.toolbar_title)
-    TextView mTvTitle;
+public class XPageWebViewFragment extends BaseFragment<FragmentAgentwebBinding> implements View.OnClickListener {
 
     protected AgentWeb mAgentWeb;
     private PopupMenu mPopupMenu;
@@ -130,19 +122,15 @@ public class XPageWebViewFragment extends BaseFragment {
                 .open(fragment);
     }
 
+    @NonNull
+    @Override
+    protected FragmentAgentwebBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
+        return FragmentAgentwebBinding.inflate(inflater, container, false);
+    }
+
     @Override
     protected TitleBar initTitle() {
         return null;
-    }
-
-    /**
-     * 布局的资源id
-     *
-     * @return
-     */
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_agentweb;
     }
 
     /**
@@ -213,31 +201,32 @@ public class XPageWebViewFragment extends BaseFragment {
         frameLayout.addView(textView, 0, params);
     }
 
+    @Override
+    protected void initListeners() {
+        binding.includeTitle.ivBack.setOnClickListener(this);
+        binding.includeTitle.ivFinish.setOnClickListener(this);
+        binding.includeTitle.ivMore.setOnClickListener(this);
+    }
 
     private void pageNavigator(int tag) {
         //返回的导航按钮
-        mIvBack.setVisibility(tag);
-        mLineView.setVisibility(tag);
+        binding.includeTitle.ivBack.setVisibility(tag);
+        binding.includeTitle.viewLine.setVisibility(tag);
     }
 
     @SingleClick
-    @OnClick({R.id.iv_back, R.id.iv_finish, R.id.iv_more})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.iv_back:
-                // true表示AgentWeb处理了该事件
-                if (!mAgentWeb.back()) {
-                    popToBack();
-                }
-                break;
-            case R.id.iv_finish:
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        if (id == R.id.iv_back) {
+            // true表示AgentWeb处理了该事件
+            if (!mAgentWeb.back()) {
                 popToBack();
-                break;
-            case R.id.iv_more:
-                showPoPup(view);
-                break;
-            default:
-                break;
+            }
+        } else if (id == R.id.iv_finish) {
+            popToBack();
+        } else if (id == R.id.iv_more) {
+            showPoPup(view);
         }
     }
 
@@ -411,11 +400,11 @@ public class XPageWebViewFragment extends BaseFragment {
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
-            if (mTvTitle != null && !TextUtils.isEmpty(title)) {
+            if (!TextUtils.isEmpty(title)) {
                 if (title.length() > 10) {
                     title = title.substring(0, 10).concat("...");
                 }
-                mTvTitle.setText(title);
+                binding.includeTitle.toolbarTitle.setText(title);
             }
         }
     };
@@ -507,31 +496,29 @@ public class XPageWebViewFragment extends BaseFragment {
     private PopupMenu.OnMenuItemClickListener mOnMenuItemClickListener = new PopupMenu.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
-            switch (item.getItemId()) {
-                case R.id.refresh:
-                    if (mAgentWeb != null) {
-                        mAgentWeb.getUrlLoader().reload(); // 刷新
-                    }
-                    return true;
-                case R.id.copy:
-                    if (mAgentWeb != null) {
-                        toCopy(getContext(), mAgentWeb.getWebCreator().getWebView().getUrl());
-                    }
-                    return true;
-                case R.id.default_browser:
-                    if (mAgentWeb != null) {
-                        openBrowser(mAgentWeb.getWebCreator().getWebView().getUrl());
-                    }
-                    return true;
-                case R.id.share:
-                    if (mAgentWeb != null) {
-                        shareWebUrl(mAgentWeb.getWebCreator().getWebView().getUrl());
-                    }
-                    return true;
-                default:
-                    return false;
+            int id = item.getItemId();
+            if (id == R.id.refresh) {
+                if (mAgentWeb != null) {
+                    mAgentWeb.getUrlLoader().reload(); // 刷新
+                }
+                return true;
+            } else if (id == R.id.copy) {
+                if (mAgentWeb != null) {
+                    toCopy(getContext(), mAgentWeb.getWebCreator().getWebView().getUrl());
+                }
+                return true;
+            } else if (id == R.id.default_browser) {
+                if (mAgentWeb != null) {
+                    openBrowser(mAgentWeb.getWebCreator().getWebView().getUrl());
+                }
+                return true;
+            } else if (id == R.id.share) {
+                if (mAgentWeb != null) {
+                    shareWebUrl(mAgentWeb.getWebCreator().getWebView().getUrl());
+                }
+                return true;
             }
-
+            return false;
         }
     };
 
@@ -675,5 +662,6 @@ public class XPageWebViewFragment extends BaseFragment {
             return false;
         }
     };
+
 
 }

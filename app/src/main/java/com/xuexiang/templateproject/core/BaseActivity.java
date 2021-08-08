@@ -19,6 +19,11 @@ package com.xuexiang.templateproject.core;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
+import android.view.View;
+
+import androidx.annotation.Nullable;
+import androidx.viewbinding.ViewBinding;
 
 import com.xuexiang.xpage.base.XPageActivity;
 import com.xuexiang.xpage.base.XPageFragment;
@@ -28,8 +33,6 @@ import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.widget.slideback.SlideBack;
 
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.github.inflationx.viewpump.ViewPumpContextWrapper;
 
 /**
@@ -38,9 +41,15 @@ import io.github.inflationx.viewpump.ViewPumpContextWrapper;
  * @author XUE
  * @since 2019/3/22 11:21
  */
-public class BaseActivity extends XPageActivity {
-
-    Unbinder mUnbinder;
+public class BaseActivity<Binding extends ViewBinding> extends XPageActivity {
+    /**
+     * 是否支持侧滑返回
+     */
+    public static final String KEY_SUPPORT_SLIDE_BACK = "key_support_slide_back";
+    /**
+     * ViewBinding
+     */
+    protected Binding binding;
 
     @Override
     protected void attachBaseContext(Context newBase) {
@@ -48,18 +57,37 @@ public class BaseActivity extends XPageActivity {
         super.attachBaseContext(ViewPumpContextWrapper.wrap(newBase));
     }
 
-    /**
-     * 是否支持侧滑返回
-     */
-    public static final String KEY_SUPPORT_SLIDE_BACK = "key_support_slide_back";
+    @Override
+    protected View getCustomRootView() {
+        binding = viewBindingInflate(getLayoutInflater());
+        return binding != null ? binding.getRoot() : null;
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         initStatusBarStyle();
         super.onCreate(savedInstanceState);
-        mUnbinder = ButterKnife.bind(this);
-
         registerSlideBack();
+    }
+
+    /**
+     * 构建ViewBinding
+     *
+     * @param inflater  inflater
+     * @return ViewBinding
+     */
+    @Nullable
+    protected Binding viewBindingInflate(LayoutInflater inflater) {
+        return null;
+    }
+
+    /**
+     * 获取Binding
+     *
+     * @return Binding
+     */
+    public Binding getBinding() {
+        return binding;
     }
 
     /**
@@ -115,7 +143,6 @@ public class BaseActivity extends XPageActivity {
 
     @Override
     protected void onRelease() {
-        mUnbinder.unbind();
         unregisterSlideBack();
         super.onRelease();
     }

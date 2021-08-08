@@ -17,6 +17,9 @@
 
 package com.xuexiang.templateproject.fragment.news;
 
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -24,13 +27,13 @@ import com.alibaba.android.vlayout.DelegateAdapter;
 import com.alibaba.android.vlayout.VirtualLayoutManager;
 import com.alibaba.android.vlayout.layout.GridLayoutHelper;
 import com.alibaba.android.vlayout.layout.LinearLayoutHelper;
-import com.scwang.smartrefresh.layout.SmartRefreshLayout;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.adapter.base.broccoli.BroccoliSimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SimpleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.base.delegate.SingleDelegateAdapter;
 import com.xuexiang.templateproject.adapter.entity.NewInfo;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.databinding.FragmentNewsBinding;
 import com.xuexiang.templateproject.utils.DemoDataProvider;
 import com.xuexiang.templateproject.utils.Utils;
 import com.xuexiang.templateproject.utils.XToastUtils;
@@ -43,7 +46,6 @@ import com.xuexiang.xui.widget.banner.widget.banner.SimpleImageBanner;
 import com.xuexiang.xui.widget.imageview.ImageLoader;
 import com.xuexiang.xui.widget.imageview.RadiusImageView;
 
-import butterknife.BindView;
 import me.samlss.broccoli.Broccoli;
 
 /**
@@ -53,14 +55,15 @@ import me.samlss.broccoli.Broccoli;
  * @since 2019-10-30 00:15
  */
 @Page(anim = CoreAnim.none)
-public class NewsFragment extends BaseFragment {
-
-    @BindView(R.id.recyclerView)
-    RecyclerView recyclerView;
-    @BindView(R.id.refreshLayout)
-    SmartRefreshLayout refreshLayout;
+public class NewsFragment extends BaseFragment<FragmentNewsBinding> {
 
     private SimpleDelegateAdapter<NewInfo> mNewsAdapter;
+
+    @NonNull
+    @Override
+    protected FragmentNewsBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
+        return FragmentNewsBinding.inflate(inflater, container, false);
+    }
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -71,24 +74,14 @@ public class NewsFragment extends BaseFragment {
     }
 
     /**
-     * 布局的资源id
-     *
-     * @return
-     */
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_news;
-    }
-
-    /**
      * 初始化控件
      */
     @Override
     protected void initViews() {
         VirtualLayoutManager virtualLayoutManager = new VirtualLayoutManager(getContext());
-        recyclerView.setLayoutManager(virtualLayoutManager);
+        binding.recyclerView.setLayoutManager(virtualLayoutManager);
         RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
-        recyclerView.setRecycledViewPool(viewPool);
+        binding.recyclerView.setRecycledViewPool(viewPool);
         viewPool.setMaxRecycledViews(0, 10);
 
         //轮播条
@@ -174,13 +167,13 @@ public class NewsFragment extends BaseFragment {
         delegateAdapter.addAdapter(titleAdapter);
         delegateAdapter.addAdapter(mNewsAdapter);
 
-        recyclerView.setAdapter(delegateAdapter);
+        binding.recyclerView.setAdapter(delegateAdapter);
     }
 
     @Override
     protected void initListeners() {
         //下拉刷新
-        refreshLayout.setOnRefreshListener(refreshLayout -> {
+        binding.refreshLayout.setOnRefreshListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 mNewsAdapter.refresh(DemoDataProvider.getDemoNewInfos());
@@ -188,13 +181,13 @@ public class NewsFragment extends BaseFragment {
             }, 1000);
         });
         //上拉加载
-        refreshLayout.setOnLoadMoreListener(refreshLayout -> {
+        binding.refreshLayout.setOnLoadMoreListener(refreshLayout -> {
             // TODO: 2020-02-25 这里只是模拟了网络请求
             refreshLayout.getLayout().postDelayed(() -> {
                 mNewsAdapter.loadMore(DemoDataProvider.getDemoNewInfos());
                 refreshLayout.finishLoadMore();
             }, 1000);
         });
-        refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
+        binding.refreshLayout.autoRefresh();//第一次进入触发自动刷新，演示效果
     }
 }

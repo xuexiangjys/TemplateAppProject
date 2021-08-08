@@ -20,6 +20,7 @@ package com.xuexiang.templateproject.activity;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.KeyEvent;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.LinearLayout;
@@ -28,14 +29,13 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.widget.Toolbar;
-import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationView;
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.databinding.ActivityMainBinding;
 import com.xuexiang.templateproject.fragment.news.NewsFragment;
 import com.xuexiang.templateproject.fragment.other.AboutFragment;
 import com.xuexiang.templateproject.fragment.other.SettingsFragment;
@@ -56,38 +56,19 @@ import com.xuexiang.xutil.common.ClickUtils;
 import com.xuexiang.xutil.common.CollectionUtils;
 import com.xuexiang.xutil.display.Colors;
 
-import butterknife.BindView;
-
 /**
  * 程序主页面,只是一个简单的Tab例子
  *
  * @author xuexiang
  * @since 2019-07-07 23:53
  */
-public class MainActivity extends BaseActivity implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener, ClickUtils.OnClick2ExitListener, Toolbar.OnMenuItemClickListener {
-
-    @BindView(R.id.toolbar)
-    Toolbar toolbar;
-    @BindView(R.id.view_pager)
-    ViewPager viewPager;
-    /**
-     * 底部导航栏
-     */
-    @BindView(R.id.bottom_navigation)
-    BottomNavigationView bottomNavigation;
-    /**
-     * 侧边栏
-     */
-    @BindView(R.id.nav_view)
-    NavigationView navView;
-    @BindView(R.id.drawer_layout)
-    DrawerLayout drawerLayout;
+public class MainActivity extends BaseActivity<ActivityMainBinding> implements View.OnClickListener, BottomNavigationView.OnNavigationItemSelectedListener, ClickUtils.OnClick2ExitListener, Toolbar.OnMenuItemClickListener {
 
     private String[] mTitles;
 
     @Override
-    protected int getLayoutId() {
-        return R.layout.activity_main;
+    protected ActivityMainBinding viewBindingInflate(LayoutInflater inflater) {
+        return ActivityMainBinding.inflate(inflater);
     }
 
     @Override
@@ -101,6 +82,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         initListeners();
     }
 
+
     @Override
     protected boolean isSupportSlideBack() {
         return false;
@@ -110,9 +92,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
         WidgetUtils.clearActivityBackground(this);
 
         mTitles = ResUtils.getStringArray(R.array.home_titles);
-        toolbar.setTitle(mTitles[0]);
-        toolbar.inflateMenu(R.menu.menu_main);
-        toolbar.setOnMenuItemClickListener(this);
+        binding.includeMain.toolbar.setTitle(mTitles[0]);
+        binding.includeMain.toolbar.inflateMenu(R.menu.menu_main);
+        binding.includeMain.toolbar.setOnMenuItemClickListener(this);
 
         initHeader();
 
@@ -123,8 +105,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
                 new ProfileFragment()
         };
         FragmentAdapter<BaseFragment> adapter = new FragmentAdapter<>(getSupportFragmentManager(), fragments);
-        viewPager.setOffscreenPageLimit(mTitles.length - 1);
-        viewPager.setAdapter(adapter);
+        binding.includeMain.viewPager.setOffscreenPageLimit(mTitles.length - 1);
+        binding.includeMain.viewPager.setAdapter(adapter);
     }
 
     private void initData() {
@@ -133,8 +115,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     private void initHeader() {
-        navView.setItemIconTintList(null);
-        View headerView = navView.getHeaderView(0);
+        binding.navView.setItemIconTintList(null);
+        View headerView = binding.navView.getHeaderView(0);
         LinearLayout navHeader = headerView.findViewById(R.id.nav_header);
         RadiusImageView ivAvatar = headerView.findViewById(R.id.iv_avatar);
         TextView tvAvatar = headerView.findViewById(R.id.tv_avatar);
@@ -162,32 +144,29 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     }
 
     protected void initListeners() {
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawerLayout.addDrawerListener(toggle);
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, binding.drawerLayout, binding.includeMain.toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        binding.drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
 
         //侧边栏点击事件
-        navView.setNavigationItemSelectedListener(menuItem -> {
+        binding.navView.setNavigationItemSelectedListener(menuItem -> {
             if (menuItem.isCheckable()) {
-                drawerLayout.closeDrawers();
+                binding.drawerLayout.closeDrawers();
                 return handleNavigationItemSelected(menuItem);
             } else {
-                switch (menuItem.getItemId()) {
-                    case R.id.nav_settings:
-                        openNewPage(SettingsFragment.class);
-                        break;
-                    case R.id.nav_about:
-                        openNewPage(AboutFragment.class);
-                        break;
-                    default:
-                        XToastUtils.toast("点击了:" + menuItem.getTitle());
-                        break;
+                int id = menuItem.getItemId();
+                if (id == R.id.nav_settings) {
+                    openNewPage(SettingsFragment.class);
+                } else if (id == R.id.nav_about) {
+                    openNewPage(AboutFragment.class);
+                } else {
+                    XToastUtils.toast("点击了:" + menuItem.getTitle());
                 }
             }
             return true;
         });
         //主页事件监听
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+        binding.includeMain.viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
@@ -195,8 +174,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
             @Override
             public void onPageSelected(int position) {
-                MenuItem item = bottomNavigation.getMenu().getItem(position);
-                toolbar.setTitle(item.getTitle());
+                MenuItem item = binding.includeMain.bottomNavigation.getMenu().getItem(position);
+                binding.includeMain.toolbar.setTitle(item.getTitle());
                 item.setChecked(true);
                 updateSideNavStatus(item);
             }
@@ -206,7 +185,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
             }
         });
-        bottomNavigation.setOnNavigationItemSelectedListener(this);
+        binding.includeMain.bottomNavigation.setOnNavigationItemSelectedListener(this);
     }
 
     /**
@@ -218,8 +197,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     private boolean handleNavigationItemSelected(@NonNull MenuItem menuItem) {
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
         if (index != -1) {
-            toolbar.setTitle(menuItem.getTitle());
-            viewPager.setCurrentItem(index, false);
+            binding.includeMain.toolbar.setTitle(menuItem.getTitle());
+            binding.includeMain.viewPager.setCurrentItem(index, false);
             return true;
         }
         return false;
@@ -227,15 +206,11 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
 
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.action_privacy:
-                GuideTipsDialog.showTipsForce(this);
-                break;
-            case R.id.action_about:
-                openNewPage(AboutFragment.class);
-                break;
-            default:
-                break;
+        int id = item.getItemId();
+        if (id == R.id.action_privacy) {
+            GuideTipsDialog.showTipsForce(this);
+        } else if (id == R.id.action_about) {
+            openNewPage(AboutFragment.class);
         }
         return false;
     }
@@ -243,12 +218,9 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     @SingleClick
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.nav_header:
-                XToastUtils.toast("点击头部！");
-                break;
-            default:
-                break;
+        int id = v.getId();
+        if (id == R.id.nav_header) {
+            XToastUtils.toast("点击头部！");
         }
     }
 
@@ -264,8 +236,8 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         int index = CollectionUtils.arrayIndexOf(mTitles, menuItem.getTitle());
         if (index != -1) {
-            toolbar.setTitle(menuItem.getTitle());
-            viewPager.setCurrentItem(index, false);
+            binding.includeMain.toolbar.setTitle(menuItem.getTitle());
+            binding.includeMain.viewPager.setCurrentItem(index, false);
 
             updateSideNavStatus(menuItem);
             return true;
@@ -279,7 +251,7 @@ public class MainActivity extends BaseActivity implements View.OnClickListener, 
      * @param menuItem
      */
     private void updateSideNavStatus(MenuItem menuItem) {
-        MenuItem side = navView.getMenu().findItem(menuItem.getItemId());
+        MenuItem side = binding.navView.getMenu().findItem(menuItem.getItemId());
         if (side != null) {
             side.setChecked(true);
         }

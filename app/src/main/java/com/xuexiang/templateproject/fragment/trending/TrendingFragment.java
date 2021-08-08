@@ -17,8 +17,13 @@
 
 package com.xuexiang.templateproject.fragment.trending;
 
-import com.xuexiang.templateproject.R;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.databinding.FragmentTrendingBinding;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xpage.enums.CoreAnim;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
@@ -28,7 +33,13 @@ import com.xuexiang.xui.widget.actionbar.TitleBar;
  * @since 2019-10-30 00:19
  */
 @Page(anim = CoreAnim.none)
-public class TrendingFragment extends BaseFragment {
+public class TrendingFragment extends BaseFragment<FragmentTrendingBinding> {
+
+    @NonNull
+    @Override
+    protected FragmentTrendingBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
+        return FragmentTrendingBinding.inflate(inflater, container, false);
+    }
 
     /**
      * @return 返回为 null意为不需要导航栏
@@ -36,16 +47,6 @@ public class TrendingFragment extends BaseFragment {
     @Override
     protected TitleBar initTitle() {
         return null;
-    }
-
-    /**
-     * 布局的资源id
-     *
-     * @return
-     */
-    @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_trending;
     }
 
     /**

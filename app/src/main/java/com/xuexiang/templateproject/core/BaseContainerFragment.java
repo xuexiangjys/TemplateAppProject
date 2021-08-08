@@ -17,10 +17,15 @@
 
 package com.xuexiang.templateproject.core;
 
+import static com.xuexiang.templateproject.core.SimpleListAdapter.KEY_SUB_TITLE;
+import static com.xuexiang.templateproject.core.SimpleListAdapter.KEY_TITLE;
+
 import android.content.res.Configuration;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+
+import androidx.annotation.NonNull;
 
 import com.umeng.analytics.MobclickAgent;
 import com.xuexiang.xaop.annotation.SingleClick;
@@ -32,9 +37,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-
-import static com.xuexiang.templateproject.core.SimpleListAdapter.KEY_SUB_TITLE;
-import static com.xuexiang.templateproject.core.SimpleListAdapter.KEY_TITLE;
 
 /**
  * 修改列表样式为主副标题显示
@@ -52,12 +54,7 @@ public abstract class BaseContainerFragment extends XPageContainerListFragment {
     }
 
     protected TitleBar initTitle() {
-        return TitleUtils.addTitleBarDynamic((ViewGroup) getRootView(), getPageTitle(), new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                popToBack();
-            }
-        });
+        return TitleUtils.addTitleBarDynamic((ViewGroup) getRootView(), getPageTitle(), v -> popToBack());
     }
 
     @Override
@@ -99,7 +96,7 @@ public abstract class BaseContainerFragment extends XPageContainerListFragment {
     }
 
     @Override
-    public void onConfigurationChanged(Configuration newConfig) {
+    public void onConfigurationChanged(@NonNull Configuration newConfig) {
         //屏幕旋转时刷新一下title
         super.onConfigurationChanged(newConfig);
         ViewGroup root = (ViewGroup) getRootView();

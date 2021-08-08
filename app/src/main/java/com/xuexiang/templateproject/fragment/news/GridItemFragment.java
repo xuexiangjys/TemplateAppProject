@@ -17,8 +17,13 @@
 
 package com.xuexiang.templateproject.fragment.news;
 
-import com.xuexiang.templateproject.R;
+import android.view.LayoutInflater;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.databinding.FragmentGridItemBinding;
 import com.xuexiang.xpage.annotation.Page;
 import com.xuexiang.xrouter.annotation.AutoWired;
 import com.xuexiang.xrouter.launcher.XRouter;
@@ -28,7 +33,7 @@ import com.xuexiang.xrouter.launcher.XRouter;
  * @since 2021/6/30 1:21 AM
  */
 @Page
-public class GridItemFragment extends BaseFragment {
+public class GridItemFragment extends BaseFragment<FragmentGridItemBinding> {
 
     public static final String KEY_TITLE_NAME = "title_name";
 
@@ -38,9 +43,10 @@ public class GridItemFragment extends BaseFragment {
     @AutoWired(name = KEY_TITLE_NAME)
     String title;
 
+    @NonNull
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_grid_item;
+    protected FragmentGridItemBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
+        return FragmentGridItemBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -54,9 +60,12 @@ public class GridItemFragment extends BaseFragment {
         return title;
     }
 
+
+
     @Override
     protected void initViews() {
 
     }
+
 
 }

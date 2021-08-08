@@ -26,6 +26,7 @@
 
     <!--  主内容填充  -->
     <include
+        android:id="@+id/include_main"
         layout="@layout/layout_main_content"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />

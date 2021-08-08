@@ -18,12 +18,16 @@
 package com.xuexiang.templateproject.fragment.other;
 
 import android.graphics.Color;
+import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.CheckBox;
+import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.MainActivity;
 import com.xuexiang.templateproject.core.BaseFragment;
+import com.xuexiang.templateproject.databinding.FragmentLoginBinding;
 import com.xuexiang.templateproject.utils.RandomUtils;
 import com.xuexiang.templateproject.utils.SettingUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
@@ -38,13 +42,7 @@ import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.ThemeUtils;
 import com.xuexiang.xui.utils.ViewUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
-import com.xuexiang.xui.widget.button.roundbutton.RoundButton;
-import com.xuexiang.xui.widget.edittext.materialedittext.MaterialEditText;
-import com.xuexiang.xui.widget.textview.supertextview.SuperButton;
 import com.xuexiang.xutil.app.ActivityUtils;
-
-import butterknife.BindView;
-import butterknife.OnClick;
 
 
 /**
@@ -54,27 +52,16 @@ import butterknife.OnClick;
  * @since 2019-11-17 22:15
  */
 @Page(anim = CoreAnim.none)
-public class LoginFragment extends BaseFragment {
-
-    @BindView(R.id.et_phone_number)
-    MaterialEditText etPhoneNumber;
-    @BindView(R.id.et_verify_code)
-    MaterialEditText etVerifyCode;
-    @BindView(R.id.btn_get_verify_code)
-    RoundButton btnGetVerifyCode;
-
-    @BindView(R.id.cb_protocol)
-    CheckBox cbProtocol;
-    @BindView(R.id.btn_login)
-    SuperButton btnLogin;
+public class LoginFragment extends BaseFragment<FragmentLoginBinding> implements View.OnClickListener {
 
     private View mJumpView;
 
     private CountDownButtonHelper mCountDownHelper;
 
+    @NonNull
     @Override
-    protected int getLayoutId() {
-        return R.layout.fragment_login;
+    protected FragmentLoginBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
+        return FragmentLoginBinding.inflate(inflater, container, false);
     }
 
     @Override
@@ -96,7 +83,7 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void initViews() {
-        mCountDownHelper = new CountDownButtonHelper(btnGetVerifyCode, 60);
+        mCountDownHelper = new CountDownButtonHelper(binding.btnGetVerifyCode, 60);
         //隐私政策弹窗
         if (!SettingUtils.isAgreePrivacy()) {
             Utils.showPrivacyDialog(getContext(), (dialog, which) -> {
@@ -105,16 +92,26 @@ public class LoginFragment extends BaseFragment {
             });
         }
         boolean isAgreePrivacy = SettingUtils.isAgreePrivacy();
-        cbProtocol.setChecked(isAgreePrivacy);
+        binding.cbProtocol.setChecked(isAgreePrivacy);
         refreshButton(isAgreePrivacy);
-        cbProtocol.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        binding.cbProtocol.setOnCheckedChangeListener((buttonView, isChecked) -> {
             SettingUtils.setIsAgreePrivacy(isChecked);
             refreshButton(isChecked);
         });
     }
 
+    @Override
+    protected void initListeners() {
+        binding.btnGetVerifyCode.setOnClickListener(this);
+        binding.btnLogin.setOnClickListener(this);
+        binding.tvOtherLogin.setOnClickListener(this);
+        binding.tvForgetPassword.setOnClickListener(this);
+        binding.tvUserProtocol.setOnClickListener(this);
+        binding.tvPrivacyProtocol.setOnClickListener(this);
+    }
+
     private void refreshButton(boolean isChecked) {
-        ViewUtils.setEnabled(btnLogin, isChecked);
+        ViewUtils.setEnabled(binding.btnLogin, isChecked);
         ViewUtils.setEnabled(mJumpView, isChecked);
     }
 
@@ -126,36 +123,29 @@ public class LoginFragment extends BaseFragment {
     }
 
     @SingleClick
-    @OnClick({R.id.btn_get_verify_code, R.id.btn_login, R.id.tv_other_login, R.id.tv_forget_password, R.id.tv_user_protocol, R.id.tv_privacy_protocol})
-    public void onViewClicked(View view) {
-        switch (view.getId()) {
-            case R.id.btn_get_verify_code:
-                if (etPhoneNumber.validate()) {
-                    getVerifyCode(etPhoneNumber.getEditValue());
+    @Override
+    public void onClick(View v) {
+        int id = v.getId();
+        if (id == R.id.btn_get_verify_code) {
+            if (binding.etPhoneNumber.validate()) {
+                getVerifyCode(binding.etPhoneNumber.getEditValue());
+            }
+        } else if (id == R.id.btn_login) {
+            if (binding.etPhoneNumber.validate()) {
+                if (binding.etVerifyCode.validate()) {
+                    loginByVerifyCode(binding.etPhoneNumber.getEditValue(), binding.etVerifyCode.getEditValue());
                 }
-                break;
-            case R.id.btn_login:
-                if (etPhoneNumber.validate()) {
-                    if (etVerifyCode.validate()) {
-                        loginByVerifyCode(etPhoneNumber.getEditValue(), etVerifyCode.getEditValue());
-                    }
-                }
-                break;
-            case R.id.tv_other_login:
-                XToastUtils.info("其他登录方式");
-                break;
-            case R.id.tv_forget_password:
-                XToastUtils.info("忘记密码");
-                break;
-            case R.id.tv_user_protocol:
-                Utils.gotoProtocol(this, false, true);
-                break;
-            case R.id.tv_privacy_protocol:
-                Utils.gotoProtocol(this, true, true);
-                break;
-            default:
-                break;
+            }
+        } else if (id == R.id.tv_other_login) {
+            XToastUtils.info("其他登录方式");
+        } else if (id == R.id.tv_forget_password) {
+            XToastUtils.info("忘记密码");
+        } else if (id == R.id.tv_user_protocol) {
+            Utils.gotoProtocol(this, false, true);
+        } else if (id == R.id.tv_privacy_protocol) {
+            Utils.gotoProtocol(this, true, true);
         }
+
     }
 
     /**
@@ -196,5 +186,8 @@ public class LoginFragment extends BaseFragment {
         }
         super.onDestroyView();
     }
+
+
+
 }
 
