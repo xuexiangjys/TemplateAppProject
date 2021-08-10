@@ -2,7 +2,7 @@
 
 Android空壳模板工程，快速搭建（集成了XUI、XUtil、XAOP、XPage、XUpdate、XHttp2、友盟统计和walle多渠道打包)
 
-**【注意】** 本分支适用于Android Studio 4.0以下的版本，如果你想使用Android Studio最新版本，请移步`master`主分支。
+**【注意】** 本分支适用于Android Studio 4.0以下的版本，如果你想使用Android Studio最新版本，请移步[master](https://github.com/xuexiangjys/TemplateAppProject/tree/master)主分支。
 
 ## 关于我
 
