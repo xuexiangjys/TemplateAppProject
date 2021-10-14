@@ -24,6 +24,19 @@ versions.butterknife = "10.1.0"
 versions.runner = "1.2.0"
 versions.gson = "2.8.5"
 versions.okhttp3 = "3.12.12"
+versions.leakcanary = "2.6"
+
+//========xlibrary start========//
+
+versions.xui = "1.1.8"
+versions.xupdate = "2.1.0"
+versions.xaop = "1.1.0"
+versions.xutil = "2.0.0"
+versions.xhttp2 = "2.0.4"
+versions.xpage = "3.2.0"
+versions.xrouter = "1.0.1"
+
+//========xlibrary end========//
 
 def deps = [:]
 
@@ -101,6 +114,26 @@ deps.rxandroid = "io.reactivex.rxjava2:rxandroid:$versions.rxandroid"
 deps.rxbinding = "com.jakewharton.rxbinding2:rxbinding:$versions.rxbinding"
 deps.gson = "com.google.code.gson:gson:$versions.gson"
 deps.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
+deps.leakcanary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
+
+//========xlibrary start=================//
+def xlibrary = [:]
+
+xlibrary.xui = "com.github.xuexiangjys:XUI:$versions.xui"
+xlibrary.xupdate = "com.github.xuexiangjys:XUpdate:$versions.xupdate"
+xlibrary.xaop_runtime = "com.github.xuexiangjys.XAOP:xaop-runtime:$versions.xaop"
+xlibrary.xaop_plugin = "com.github.xuexiangjys.XAOP:xaop-plugin:$versions.xaop"
+xlibrary.xutil_core = "com.github.xuexiangjys.XUtil:xutil-core:$versions.xutil"
+xlibrary.xhttp2 = "com.github.xuexiangjys:XHttp2:$versions.xhttp2"
+xlibrary.xpage_lib = "com.github.xuexiangjys.XPage:xpage-lib:$versions.xpage"
+xlibrary.xpage_compiler = "com.github.xuexiangjys.XPage:xpage-compiler:$versions.xpage"
+xlibrary.xrouter_runtime = "com.github.xuexiangjys.XRouter:xrouter-runtime:$versions.xrouter"
+xlibrary.xrouter_compiler = "com.github.xuexiangjys.XRouter:xrouter-compiler:$versions.xrouter"
+xlibrary.xrouter_plugin = "com.github.xuexiangjys.XRouter:xrouter-plugin:$versions.xrouter"
+
+deps.xlibrary = xlibrary
+
+//========xlibrary end=================//
 
 ext.deps = deps
 
@@ -165,10 +198,11 @@ ext.addRepos = this.&addRepos
 
 //自动添加XAOP和XRouter插件
 project.buildscript.configurations.each { configuration ->
+    def dependencies = getProject().dependencies
     if (configuration.name == "classpath") {
         //XAOP插件
-        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XAOP:xaop-plugin:1.1.0'))
+        configuration.dependencies.add(dependencies.create(deps.xlibrary.xaop_plugin))
         //XRouter插件
-        configuration.dependencies.add(getProject().dependencies.create('com.github.xuexiangjys.XRouter:xrouter-plugin:1.0.1'))
+        configuration.dependencies.add(dependencies.create(deps.xlibrary.xrouter_plugin))
     }
 }
