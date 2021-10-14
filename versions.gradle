@@ -117,6 +117,7 @@ deps.okhttp3 = "com.squareup.okhttp3:okhttp:$versions.okhttp3"
 deps.leakcanary = "com.squareup.leakcanary:leakcanary-android:$versions.leakcanary"
 
 //========xlibrary start=================//
+
 def xlibrary = [:]
 
 xlibrary.xui = "com.github.xuexiangjys:XUI:$versions.xui"

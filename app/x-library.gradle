@@ -14,7 +14,7 @@ project.configurations.each { configuration ->
         configuration.dependencies.add(dependencies.create(deps.glide))
         //XUtil工具类
         configuration.dependencies.add(dependencies.create(deps.xlibrary.xutil_core))
-        //XAOP切片，版本号前带x的是支持androidx的版本
+        //XAOP切片
         configuration.dependencies.add(dependencies.create(deps.xlibrary.xaop_runtime))
         //XUpdate版本更新
         configuration.dependencies.add(dependencies.create(deps.xlibrary.xupdate))
