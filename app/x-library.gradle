@@ -2,7 +2,7 @@ apply plugin: 'com.xuexiang.xaop' //引用XAOP插件
 apply plugin: 'com.xuexiang.xrouter' //引用XRouter-plugin插件实现自动注册
 
 //自动添加依赖
-project.configurations.each { configuration ->
+configurations.each { configuration ->
     def dependencies = getProject().dependencies
     if (configuration.name == "implementation") {
         //为Project加入X-Library依赖
@@ -45,3 +45,6 @@ project.configurations.each { configuration ->
     }
 }
 
+configurations.all {
+    resolutionStrategy.force deps.okhttp3
+}
