@@ -29,12 +29,12 @@ versions.leakcanary = "2.6"
 //========xlibrary start========//
 
 versions.xui = "1.1.9"
-versions.xupdate = "2.1.1"
+versions.xupdate = "2.1.2"
 versions.xaop = "1.1.0"
 versions.xutil = "2.0.0"
 versions.xhttp2 = "2.0.4"
 versions.xpage = "3.3.0"
-versions.xrouter = "1.0.1"
+versions.xrouter = "1.1.0"
 
 //========xlibrary end========//
 
