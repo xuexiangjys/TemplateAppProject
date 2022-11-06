@@ -19,12 +19,12 @@ package com.xuexiang.templateproject.utils.update;
 
 import androidx.annotation.NonNull;
 
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xhttp2.XHttp;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xhttp2.callback.DownloadProgressCallBack;
 import com.xuexiang.xhttp2.callback.SimpleCallBack;
 import com.xuexiang.xhttp2.exception.ApiException;
+import com.xuexiang.xui.utils.XToastUtils;
 import com.xuexiang.xupdate.proxy.IUpdateHttpService;
 import com.xuexiang.xutil.file.FileUtils;
 import com.xuexiang.xutil.net.JsonUtil;
