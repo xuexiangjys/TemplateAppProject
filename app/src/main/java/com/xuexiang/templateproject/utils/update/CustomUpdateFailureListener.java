@@ -17,7 +17,7 @@
 
 package com.xuexiang.templateproject.utils.update;
 
-import com.xuexiang.templateproject.utils.XToastUtils;
+import com.xuexiang.xui.utils.XToastUtils;
 import com.xuexiang.xupdate.entity.UpdateError;
 import com.xuexiang.xupdate.listener.OnUpdateFailureListener;
 
@@ -50,7 +50,7 @@ public class CustomUpdateFailureListener implements OnUpdateFailureListener {
     @Override
     public void onFailure(UpdateError error) {
         if (mNeedErrorTip) {
-            XToastUtils.error(error);
+            XToastUtils.error(error.getDetailMsg());
         }
         if (error.getCode() == UpdateError.ERROR.DOWNLOAD_FAILED) {
             UpdateTipDialog.show("应用下载失败，是否考虑切换" + UpdateTipDialog.DOWNLOAD_TYPE_NAME + "下载？");

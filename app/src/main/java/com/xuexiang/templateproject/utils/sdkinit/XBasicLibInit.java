@@ -22,12 +22,12 @@ import android.app.Application;
 import com.xuexiang.templateproject.MyApp;
 import com.xuexiang.templateproject.core.BaseActivity;
 import com.xuexiang.templateproject.utils.TokenUtils;
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xaop.XAOP;
 import com.xuexiang.xhttp2.XHttpSDK;
 import com.xuexiang.xpage.PageConfig;
 import com.xuexiang.xrouter.launcher.XRouter;
 import com.xuexiang.xui.XUI;
+import com.xuexiang.xui.utils.XToastUtils;
 import com.xuexiang.xutil.XUtil;
 import com.xuexiang.xutil.common.StringUtils;
 

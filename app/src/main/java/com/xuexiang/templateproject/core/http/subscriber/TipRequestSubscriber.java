@@ -20,10 +20,10 @@ package com.xuexiang.templateproject.core.http.subscriber;
 
 import androidx.annotation.NonNull;
 
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.xhttp2.exception.ApiException;
 import com.xuexiang.xhttp2.model.XHttpRequest;
 import com.xuexiang.xhttp2.subsciber.BaseSubscriber;
+import com.xuexiang.xui.utils.XToastUtils;
 import com.xuexiang.xutil.common.StringUtils;
 import com.xuexiang.xutil.common.logger.Logger;
 

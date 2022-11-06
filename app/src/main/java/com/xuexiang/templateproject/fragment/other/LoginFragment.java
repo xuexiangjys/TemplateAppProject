@@ -32,7 +32,6 @@ import com.xuexiang.templateproject.utils.RandomUtils;
 import com.xuexiang.templateproject.utils.SettingUtils;
 import com.xuexiang.templateproject.utils.TokenUtils;
 import com.xuexiang.templateproject.utils.Utils;
-import com.xuexiang.templateproject.utils.XToastUtils;
 import com.xuexiang.templateproject.utils.sdkinit.UMengInit;
 import com.xuexiang.xaop.annotation.SingleClick;
 import com.xuexiang.xpage.annotation.Page;
@@ -41,6 +40,7 @@ import com.xuexiang.xui.utils.CountDownButtonHelper;
 import com.xuexiang.xui.utils.ResUtils;
 import com.xuexiang.xui.utils.ThemeUtils;
 import com.xuexiang.xui.utils.ViewUtils;
+import com.xuexiang.xui.utils.XToastUtils;
 import com.xuexiang.xui.widget.actionbar.TitleBar;
 import com.xuexiang.xutil.app.ActivityUtils;
 
