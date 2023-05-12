@@ -124,8 +124,8 @@ public class XPageWebViewFragment extends BaseFragment<FragmentAgentwebBinding> 
 
     @NonNull
     @Override
-    protected FragmentAgentwebBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentAgentwebBinding.inflate(inflater, container, false);
+    protected FragmentAgentwebBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentAgentwebBinding.inflate(inflater, container, attachToRoot);
     }
 
     @Override
@@ -397,6 +397,7 @@ public class XPageWebViewFragment extends BaseFragment<FragmentAgentwebBinding> 
             super.onProgressChanged(view, newProgress);
             //网页加载进度
         }
+
         @Override
         public void onReceivedTitle(WebView view, String title) {
             super.onReceivedTitle(view, title);
@@ -413,7 +414,7 @@ public class XPageWebViewFragment extends BaseFragment<FragmentAgentwebBinding> 
      * 和网页url加载相关，统计加载时间
      */
     protected WebViewClient mWebViewClient = new WebViewClient() {
-        private HashMap<String, Long> mTimer = new HashMap<>();
+        private final HashMap<String, Long> mTimer = new HashMap<>();
 
         @Override
         public void onReceivedError(WebView view, WebResourceRequest request, WebResourceError error) {
@@ -431,15 +432,13 @@ public class XPageWebViewFragment extends BaseFragment<FragmentAgentwebBinding> 
         public WebResourceResponse shouldInterceptRequest(WebView view, WebResourceRequest request) {
             return super.shouldInterceptRequest(view, request);
         }
+
         @Override
         public boolean shouldOverrideUrlLoading(final WebView view, String url) {
             //intent:// scheme的处理 如果返回false ， 则交给 DefaultWebClient 处理 ， 默认会打开该Activity  ， 如果Activity不存在则跳到应用市场上去.  true 表示拦截
             //例如优酷视频播放 ，intent://play?...package=com.youku.phone;end;
             //优酷想唤起自己应用播放该视频 ， 下面拦截地址返回 true  则会在应用内 H5 播放 ，禁止优酷唤起播放该视频， 如果返回 false ， DefaultWebClient  会根据intent 协议处理 该地址 ， 首先匹配该应用存不存在 ，如果存在 ， 唤起该应用播放 ， 如果不存在 ， 则跳到应用市场下载该应用 .
-            if (url.startsWith("intent://") && url.contains("com.youku.phone")) {
-                return true;
-            }
-            return false;
+            return url.startsWith("intent://") && url.contains("com.youku.phone");
         }
 
         @Override
@@ -493,7 +492,7 @@ public class XPageWebViewFragment extends BaseFragment<FragmentAgentwebBinding> 
     /**
      * 菜单事件
      */
-    private PopupMenu.OnMenuItemClickListener mOnMenuItemClickListener = new PopupMenu.OnMenuItemClickListener() {
+    private final PopupMenu.OnMenuItemClickListener mOnMenuItemClickListener = new PopupMenu.OnMenuItemClickListener() {
         @Override
         public boolean onMenuItemClick(MenuItem item) {
             int id = item.getItemId();
@@ -625,11 +624,8 @@ public class XPageWebViewFragment extends BaseFragment<FragmentAgentwebBinding> 
                     return true;
                 }
                 // 执行 DefaultWebClient#shouldOverrideUrlLoading
-                if (super.shouldOverrideUrlLoading(view, url)) {
-                    return true;
-                }
+                return super.shouldOverrideUrlLoading(view, url);
                 // do you work
-                return false;
             }
 
             @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)

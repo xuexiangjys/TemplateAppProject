@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.activity.MainActivity;
@@ -60,8 +61,8 @@ public class LoginFragment extends BaseFragment<FragmentLoginBinding> implements
 
     @NonNull
     @Override
-    protected FragmentLoginBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentLoginBinding.inflate(inflater, container, false);
+    protected FragmentLoginBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentLoginBinding.inflate(inflater, container, attachToRoot);
     }
 
     @Override

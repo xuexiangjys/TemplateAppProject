@@ -52,7 +52,7 @@ public abstract class BaseSimpleListFragment extends XPageSimpleListFragment {
     }
 
     protected TitleBar initTitle() {
-        return TitleUtils.addTitleBarDynamic((ViewGroup) getRootView(), getPageTitle(), v -> popToBack());
+        return TitleUtils.addTitleBarDynamic(getToolbarContainer(), getPageTitle(), v -> popToBack());
     }
 
     @Override

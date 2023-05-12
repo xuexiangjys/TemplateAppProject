@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
@@ -42,8 +43,8 @@ public class ProfileFragment extends BaseFragment<FragmentProfileBinding> implem
 
     @NonNull
     @Override
-    protected FragmentProfileBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentProfileBinding.inflate(inflater, container, false);
+    protected FragmentProfileBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentProfileBinding.inflate(inflater, container, attachToRoot);
     }
 
     /**

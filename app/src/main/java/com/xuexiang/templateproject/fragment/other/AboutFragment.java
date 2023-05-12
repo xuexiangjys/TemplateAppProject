@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
@@ -62,7 +63,7 @@ public class AboutFragment extends BaseFragment<FragmentAboutBinding> {
 
     @NonNull
     @Override
-    protected FragmentAboutBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentAboutBinding.inflate(inflater, container, false);
+    protected FragmentAboutBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentAboutBinding.inflate(inflater, container, attachToRoot);
     }
 }

@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.databinding.FragmentGridItemBinding;
@@ -45,8 +46,8 @@ public class GridItemFragment extends BaseFragment<FragmentGridItemBinding> {
 
     @NonNull
     @Override
-    protected FragmentGridItemBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentGridItemBinding.inflate(inflater, container, false);
+    protected FragmentGridItemBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentGridItemBinding.inflate(inflater, container, attachToRoot);
     }
 
     @Override
@@ -59,7 +60,6 @@ public class GridItemFragment extends BaseFragment<FragmentGridItemBinding> {
     protected String getPageTitle() {
         return title;
     }
-
 
 
     @Override

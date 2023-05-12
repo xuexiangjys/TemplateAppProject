@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
@@ -42,8 +43,8 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding> impl
 
     @NonNull
     @Override
-    protected FragmentSettingsBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentSettingsBinding.inflate(inflater, container, false);
+    protected FragmentSettingsBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentSettingsBinding.inflate(inflater, container, attachToRoot);
     }
 
     @Override
@@ -60,7 +61,7 @@ public class SettingsFragment extends BaseFragment<FragmentSettingsBinding> impl
     @Override
     public void onClick(SuperTextView superTextView) {
         int id = superTextView.getId();
-        if (id  == R.id.menu_common || id  == R.id.menu_privacy || id == R.id.menu_push || id  == R.id.menu_helper) {
+        if (id == R.id.menu_common || id == R.id.menu_privacy || id == R.id.menu_push || id == R.id.menu_helper) {
             XToastUtils.toast(superTextView.getLeftString());
         } else if (id == R.id.menu_change_account) {
             XToastUtils.toast(superTextView.getCenterString());

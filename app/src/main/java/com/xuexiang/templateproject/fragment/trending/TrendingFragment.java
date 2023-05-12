@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.xuexiang.templateproject.core.BaseFragment;
 import com.xuexiang.templateproject.databinding.FragmentTrendingBinding;
@@ -37,8 +38,8 @@ public class TrendingFragment extends BaseFragment<FragmentTrendingBinding> {
 
     @NonNull
     @Override
-    protected FragmentTrendingBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentTrendingBinding.inflate(inflater, container, false);
+    protected FragmentTrendingBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentTrendingBinding.inflate(inflater, container, attachToRoot);
     }
 
     /**

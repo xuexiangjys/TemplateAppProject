@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.xuexiang.templateproject.R;
 import com.xuexiang.templateproject.core.BaseFragment;
@@ -66,8 +67,8 @@ public class ServiceProtocolFragment extends BaseFragment<FragmentServiceProtoco
 
     @NonNull
     @Override
-    protected FragmentServiceProtocolBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentServiceProtocolBinding.inflate(inflater, container, false);
+    protected FragmentServiceProtocolBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentServiceProtocolBinding.inflate(inflater, container, attachToRoot);
     }
 
     @Override

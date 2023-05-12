@@ -21,6 +21,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.alibaba.android.vlayout.DelegateAdapter;
@@ -61,8 +62,8 @@ public class NewsFragment extends BaseFragment<FragmentNewsBinding> {
 
     @NonNull
     @Override
-    protected FragmentNewsBinding viewBindingInflate(LayoutInflater inflater, ViewGroup container) {
-        return FragmentNewsBinding.inflate(inflater, container, false);
+    protected FragmentNewsBinding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        return FragmentNewsBinding.inflate(inflater, container, attachToRoot);
     }
 
     /**

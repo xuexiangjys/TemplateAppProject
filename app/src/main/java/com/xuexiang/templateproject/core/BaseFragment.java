@@ -24,6 +24,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.viewbinding.ViewBinding;
 
@@ -60,9 +61,10 @@ public abstract class BaseFragment<Binding extends ViewBinding> extends XPageFra
      */
     protected Binding binding;
 
+    @Nullable
     @Override
-    protected View inflateView(LayoutInflater inflater, ViewGroup container) {
-        binding = viewBindingInflate(inflater, container);
+    protected View onCreateContentView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot) {
+        binding = viewBindingInflate(inflater, container, attachToRoot);
         return binding.getRoot();
     }
 
@@ -74,7 +76,7 @@ public abstract class BaseFragment<Binding extends ViewBinding> extends XPageFra
      * @return ViewBinding
      */
     @NonNull
-    protected abstract Binding viewBindingInflate(LayoutInflater inflater, ViewGroup container);
+    protected abstract Binding viewBindingInflate(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, boolean attachToRoot);
 
     /**
      * 获取Binding
@@ -93,7 +95,7 @@ public abstract class BaseFragment<Binding extends ViewBinding> extends XPageFra
     }
 
     protected TitleBar initTitle() {
-        return TitleUtils.addTitleBarDynamic((ViewGroup) getRootView(), getPageTitle(), v -> popToBack());
+        return TitleUtils.addTitleBarDynamic(getToolbarContainer(), getPageTitle(), v -> popToBack());
     }
 
     @Override
