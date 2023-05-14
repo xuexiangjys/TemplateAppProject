@@ -14,73 +14,68 @@
   ~ limitations under the License.
   ~
   -->
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="?attr/xui_config_color_background"
-    android:orientation="vertical">
+    style="@style/PullDownStyle"
+    android:background="?attr/xui_config_color_background">
 
-    <com.scwang.smartrefresh.layout.SmartRefreshLayout style="@style/PullDownStyle">
+    <androidx.core.widget.NestedScrollView style="@style/ScrollViewStyle">
 
-        <androidx.core.widget.NestedScrollView style="@style/ScrollViewStyle">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingTop="20dp">
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                style="@style/InfoItem.Account"
+                android:layout_height="60dp"
+                app:sLeftTextString="头像">
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/InfoItem.Account"
-                    android:layout_height="60dp"
-                    app:sLeftTextString="头像">
+                <com.xuexiang.xui.widget.imageview.RadiusImageView
+                    android:id="@+id/riv_head_pic"
+                    style="@style/RadiusImageView.Circle"
+                    android:layout_width="38dp"
+                    android:layout_height="38dp"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/sRightImgId"
+                    app:srcCompat="@drawable/ic_default_head" />
 
-                    <com.xuexiang.xui.widget.imageview.RadiusImageView
-                        android:id="@+id/riv_head_pic"
-                        style="@style/RadiusImageView.Circle"
-                        android:layout_width="38dp"
-                        android:layout_height="38dp"
-                        android:layout_centerVertical="true"
-                        android:layout_toStartOf="@id/sRightImgId"
-                        app:srcCompat="@drawable/ic_default_head" />
+            </com.xuexiang.xui.widget.textview.supertextview.SuperTextView>
 
-                </com.xuexiang.xui.widget.textview.supertextview.SuperTextView>
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                style="@style/InfoItem.Account"
+                app:sLeftTextString="账号" />
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/InfoItem.Account"
-                    app:sLeftTextString="账号" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                style="@style/InfoItem.Account"
+                app:sLeftTextString="通知" />
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/InfoItem.Account"
-                    app:sLeftTextString="通知" />
-
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/InfoItem.Account"
-                    app:sDividerLineType="none"
-                    app:sLeftTextString="收藏" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                style="@style/InfoItem.Account"
+                app:sDividerLineType="none"
+                app:sLeftTextString="收藏" />
 
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    style="@style/InfoItem.Account"
-                    android:layout_marginTop="20dp"
-                    app:sDividerLineType="none"
-                    app:sLeftTextString="意见反馈" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                style="@style/InfoItem.Account"
+                android:layout_marginTop="20dp"
+                app:sDividerLineType="none"
+                app:sLeftTextString="意见反馈" />
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    android:id="@+id/menu_settings"
-                    style="@style/InfoItem.Account"
-                    android:layout_marginTop="20dp"
-                    app:sLeftTextString="设置" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/menu_settings"
+                style="@style/InfoItem.Account"
+                android:layout_marginTop="20dp"
+                app:sLeftTextString="设置" />
 
-                <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
-                    android:id="@+id/menu_about"
-                    style="@style/InfoItem.Account"
-                    app:sDividerLineType="none"
-                    app:sLeftTextString="关于" />
+            <com.xuexiang.xui.widget.textview.supertextview.SuperTextView
+                android:id="@+id/menu_about"
+                style="@style/InfoItem.Account"
+                app:sDividerLineType="none"
+                app:sLeftTextString="关于" />
 
-            </LinearLayout>
-        </androidx.core.widget.NestedScrollView>
-    </com.scwang.smartrefresh.layout.SmartRefreshLayout>
-
-</LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>

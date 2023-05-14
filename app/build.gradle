@@ -100,8 +100,8 @@ dependencies {
 
     implementation 'com.alibaba.android:vlayout:1.3.0'
     //下拉刷新
-    implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-header:1.1.5'
-    implementation 'com.github.xuexiangjys.SmartRefreshLayout:refresh-layout:1.1.5'
+    implementation  'io.github.scwang90:refresh-layout-kernel:2.0.6'
+    implementation  'io.github.scwang90:refresh-header-material:2.0.6'
     //WebView
     implementation 'com.github.xuexiangjys.AgentWeb:agentweb-core:1.0.0'
     implementation 'com.github.xuexiangjys.AgentWeb:agentweb-download:1.0.0'//选填

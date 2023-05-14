@@ -15,7 +15,7 @@
   ~
   -->
 
-<com.scwang.smartrefresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.scwang.smart.refresh.layout.SmartRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/refreshLayout"
     style="@style/PullDownStyle">
 
@@ -27,4 +27,4 @@
         android:overScrollMode="never"
         android:visibility="visible" />
 
-</com.scwang.smartrefresh.layout.SmartRefreshLayout>
+</com.scwang.smart.refresh.layout.SmartRefreshLayout>

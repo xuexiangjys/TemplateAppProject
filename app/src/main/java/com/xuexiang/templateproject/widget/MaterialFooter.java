@@ -17,6 +17,7 @@
 
 package com.xuexiang.templateproject.widget;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
 import android.view.View;
@@ -25,12 +26,12 @@ import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 
-import com.scwang.smartrefresh.layout.api.RefreshFooter;
-import com.scwang.smartrefresh.layout.api.RefreshKernel;
-import com.scwang.smartrefresh.layout.api.RefreshLayout;
-import com.scwang.smartrefresh.layout.constant.RefreshState;
-import com.scwang.smartrefresh.layout.constant.SpinnerStyle;
-import com.scwang.smartrefresh.layout.util.DensityUtil;
+import com.scwang.smart.refresh.layout.api.RefreshFooter;
+import com.scwang.smart.refresh.layout.api.RefreshKernel;
+import com.scwang.smart.refresh.layout.api.RefreshLayout;
+import com.scwang.smart.refresh.layout.constant.RefreshState;
+import com.scwang.smart.refresh.layout.constant.SpinnerStyle;
+import com.xuexiang.xui.utils.DensityUtils;
 
 /**
  * Material风格的上拉加载
@@ -38,6 +39,7 @@ import com.scwang.smartrefresh.layout.util.DensityUtil;
  * @author xuexiang
  * @since 2019-08-03 11:14
  */
+@SuppressLint("RestrictedApi")
 public class MaterialFooter extends ProgressBar implements RefreshFooter {
 
     public MaterialFooter(Context context) {
@@ -52,7 +54,7 @@ public class MaterialFooter extends ProgressBar implements RefreshFooter {
     private void initView() {
         setVisibility(GONE);
         FrameLayout.LayoutParams params = new FrameLayout.LayoutParams(FrameLayout.LayoutParams.MATCH_PARENT, FrameLayout.LayoutParams.WRAP_CONTENT);
-        setPadding(0, DensityUtil.dp2px(10), 0, DensityUtil.dp2px(10));
+        setPadding(0, DensityUtils.dp2px(getContext(), 10), 0, DensityUtils.dp2px(getContext(), 10));
         setLayoutParams(params);
     }
 
@@ -118,6 +120,11 @@ public class MaterialFooter extends ProgressBar implements RefreshFooter {
 
     @Override
     public boolean isSupportHorizontalDrag() {
+        return false;
+    }
+
+    @Override
+    public boolean autoOpen(int duration, float dragRate, boolean animationOnly) {
         return false;
     }
 
