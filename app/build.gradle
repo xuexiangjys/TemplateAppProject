@@ -103,8 +103,8 @@ dependencies {
     implementation  'io.github.scwang90:refresh-layout-kernel:2.0.6'
     implementation  'io.github.scwang90:refresh-header-material:2.0.6'
     //WebView
-    implementation 'com.github.xuexiangjys.AgentWeb:agentweb-core:1.0.0'
-    implementation 'com.github.xuexiangjys.AgentWeb:agentweb-download:1.0.0'//选填
+    implementation 'com.github.xuexiangjys.AgentWeb:agentweb-core:1.0.1'
+    implementation 'com.github.xuexiangjys.AgentWeb:agentweb-download:1.0.1'//选填
     //腾讯的键值对存储mmkv
     implementation 'com.tencent:mmkv:1.2.10'
     //屏幕适配AutoSize
